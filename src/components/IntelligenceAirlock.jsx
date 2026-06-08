@@ -128,7 +128,7 @@ export default function IntelligenceAirlock() {
     <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-5">
         <div>
-          <h1 className="flex items-center gap-2 text-2xl font-semibold text-white">
+          <h1 className="flex items-center gap-2 text-2xl font-semibold text-mikoko-text">
             <Radio className="h-6 w-6 text-mikoko-gold" /> Intelligence Airlock
           </h1>
           <p className="mt-1 text-sm text-mikoko-muted">
@@ -162,14 +162,14 @@ export default function IntelligenceAirlock() {
                 onClick={() => setTab(t.key)}
                 className={`flex flex-1 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition ${
                   tab === t.key
-                    ? "bg-mikoko-panel text-white shadow-[inset_0_0_0_1px_rgba(0,224,255,0.2)]"
-                    : "text-mikoko-muted hover:text-white"
+                    ? "bg-mikoko-panel text-mikoko-text shadow-[inset_0_0_0_1px_rgba(0,224,255,0.2)]"
+                    : "text-mikoko-muted hover:text-mikoko-text"
                 }`}
               >
                 <Icon className="h-4 w-4" />
                 {t.label}
                 {t.key === "radar" && inactiveAlerts.length > 0 && (
-                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-mikoko-crimson px-1.5 text-[9px] font-bold text-white">
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-mikoko-crimson px-1.5 text-[9px] font-bold text-mikoko-text">
                     {inactiveAlerts.length}
                   </span>
                 )}
@@ -181,7 +181,7 @@ export default function IntelligenceAirlock() {
         {tab === "feed" && (
           <div className="space-y-3">
             {allItems.length === 0 ? (
-              <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-8 text-center">
+              <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-8 text-center">
                 <BrainCircuit className="mx-auto mb-3 h-8 w-8 text-mikoko-muted" />
                 <p className="text-sm text-mikoko-muted">No hay registros en las bases de inteligencia.</p>
                 <p className="mt-2 text-xs text-mikoko-muted">Agrega registros desde la Consola de Datos para activar el DD Wizard.</p>
@@ -193,7 +193,7 @@ export default function IntelligenceAirlock() {
                 return (
                   <div
                     key={item.internalId || i}
-                    className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-4 transition hover:border-cyan-500/20"
+                    className="rounded-lg border border-mikoko-line bg-mikoko-panel p-4 transition hover:border-mikoko-cyan/20"
                   >
                     <div className="flex items-start gap-3">
                       <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-mikoko-line bg-mikoko-panel2 text-mikoko-muted">
@@ -201,7 +201,7 @@ export default function IntelligenceAirlock() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-baseline gap-2">
-                          <p className="text-sm font-semibold text-white">
+                          <p className="text-sm font-semibold text-mikoko-text">
                             {item.titulo || item.asunto || item.nombre || item.ticker || `Entrada #${i + 1}`}
                           </p>
                           <span className="rounded border border-mikoko-line bg-mikoko-panel2 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-mikoko-muted">
@@ -255,19 +255,19 @@ export default function IntelligenceAirlock() {
 
 function StatCard({ label, value, icon: Icon, color }) {
   const colors = {
-    cyan: "border-cyan-500/30 text-cyan-400",
+    cyan: "border-mikoko-cyan/30 text-mikoko-cyan",
     gold: "border-mikoko-gold/30 text-mikoko-gold",
-    emerald: "border-emerald-500/30 text-emerald-400",
+    emerald: "border-mikoko-emerald/30 text-mikoko-emerald",
     crimson: "border-mikoko-crimson/30 text-mikoko-crimson",
     muted: "border-mikoko-line text-mikoko-muted",
   };
   return (
-    <div className={`rounded-lg border bg-mikoko-panel/95 p-4 ${colors[color] || "border-mikoko-line text-mikoko-muted"}`}>
+    <div className={`rounded-lg border bg-mikoko-panel p-4 ${colors[color] || "border-mikoko-line text-mikoko-muted"}`}>
       <div className="flex items-center gap-2">
         <Icon className="h-4 w-4" />
         <span className="text-xs uppercase tracking-[0.15em] opacity-80">{label}</span>
       </div>
-      <p className={`mt-2 text-2xl font-semibold ${value > 0 ? "text-white" : "text-mikoko-muted"}`}>{value}</p>
+      <p className={`mt-2 text-2xl font-semibold ${value > 0 ? "text-mikoko-text" : "text-mikoko-muted"}`}>{value}</p>
     </div>
   );
 }
@@ -288,7 +288,7 @@ function InactivityRadar({ projects, inactiveIds, alerts, onExtend, onIncrementC
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="flex items-center gap-2 text-lg font-semibold text-white">
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-mikoko-text">
             <Activity className="h-5 w-5 text-mikoko-crimson" /> Radar de Inactividad
           </h2>
           <p className="mt-1 text-sm text-mikoko-muted">
@@ -298,14 +298,14 @@ function InactivityRadar({ projects, inactiveIds, alerts, onExtend, onIncrementC
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="inline-flex min-h-9 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-3 py-1.5 text-xs text-mikoko-muted transition hover:text-white"
+            className="inline-flex min-h-9 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-3 py-1.5 text-xs text-mikoko-muted transition hover:text-mikoko-text"
           >
             <Eye className="h-3.5 w-3.5" />
             {showAll ? "Solo inactivos" : `Ver todos (${projects.length})`}
           </button>
           <button
             onClick={onRefresh}
-            className="inline-flex min-h-9 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-3 py-1.5 text-xs text-mikoko-muted transition hover:text-white"
+            className="inline-flex min-h-9 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-3 py-1.5 text-xs text-mikoko-muted transition hover:text-mikoko-text"
           >
             <RefreshCw className="h-3.5 w-3.5" /> Refrescar
           </button>
@@ -328,7 +328,7 @@ function InactivityRadar({ projects, inactiveIds, alerts, onExtend, onIncrementC
             return (
               <div
                 key={proj.internalId}
-                className={`relative overflow-hidden rounded-lg border bg-mikoko-panel/95 p-5 transition ${
+                className={`relative overflow-hidden rounded-lg border bg-mikoko-panel p-5 transition ${
                   isLastChance
                     ? "border-mikoko-crimson/60"
                     : isInactive
@@ -344,7 +344,7 @@ function InactivityRadar({ projects, inactiveIds, alerts, onExtend, onIncrementC
                 )}
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-white">
+                    <p className="truncate text-sm font-semibold text-mikoko-text">
                       {proj.nombreEstrategia || proj.nombre || proj.internalId}
                     </p>
                     <p className="mt-1 text-[10px] uppercase tracking-wider text-mikoko-muted">
@@ -485,7 +485,7 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
           {RISK_COMPONENTS.map((rc) => (
             <div key={rc.key}>
               <div className="mb-2 flex items-center justify-between">
-                <span className="text-sm font-medium text-white">{rc.label}</span>
+                <span className="text-sm font-medium text-mikoko-text">{rc.label}</span>
                 <span className={`rounded-md border px-2 py-0.5 font-mono text-xs ${riskColor(risks[rc.key])}`}>
                   {risks[rc.key]}/10
                 </span>
@@ -596,13 +596,13 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
             {contractAddress && (
               <div className="rounded-lg border border-mikoko-line bg-mikoko-panel2 p-3">
                 <p className="text-[10px] uppercase tracking-wider text-mikoko-muted">Contrato</p>
-                <p className="mt-1 truncate font-mono text-xs text-white">{contractAddress}</p>
+                <p className="mt-1 truncate font-mono text-xs text-mikoko-text">{contractAddress}</p>
               </div>
             )}
             {volume && (
               <div className="rounded-lg border border-mikoko-line bg-mikoko-panel2 p-3">
                 <p className="text-[10px] uppercase tracking-wider text-mikoko-muted">Volumen</p>
-                <p className="mt-1 text-sm font-semibold text-white">${Number(volume).toLocaleString()}</p>
+                <p className="mt-1 text-sm font-semibold text-mikoko-text">${Number(volume).toLocaleString()}</p>
               </div>
             )}
           </div>
@@ -615,7 +615,7 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
                 <p className="text-[10px] uppercase tracking-wider text-mikoko-muted">
                   {{ equipo: "Equipo", catalizadores: "Catalizadores", riesgos: "Riesgos", condicionSalida: "Condición de Salida" }[key] || key}
                 </p>
-                <p className="mt-0.5 whitespace-pre-wrap text-xs text-white line-clamp-3">{val || "—"}</p>
+                <p className="mt-0.5 whitespace-pre-wrap text-xs text-mikoko-text line-clamp-3">{val || "—"}</p>
               </div>
             ))}
           </div>
@@ -630,8 +630,8 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-md">
-      <div className="relative w-full max-w-2xl rounded-xl border border-mikoko-gold/30 bg-mikoko-panel shadow-[0_0_80px_rgba(245,166,35,0.12)]">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-mikoko-text/60 backdrop-blur-sm">
+      <div className="relative w-full max-w-2xl rounded-xl border border-mikoko-gold/30 bg-mikoko-panel shadow-panel-raised">
         <div className="border-b border-mikoko-line px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -639,13 +639,13 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
                 <FileCode2 className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-base font-semibold text-white">Due Diligence Wizard</h2>
+                <h2 className="text-base font-semibold text-mikoko-text">Due Diligence Wizard</h2>
                 <p className="text-[10px] text-mikoko-muted">
                   {sourceItem?.titulo || sourceItem?.asunto || "Nuevo proyecto"}
                 </p>
               </div>
             </div>
-            <button onClick={onClose} className="rounded-lg p-2 text-mikoko-muted transition hover:bg-mikoko-panel2 hover:text-white">
+            <button onClick={onClose} className="rounded-lg p-2 text-mikoko-muted transition hover:bg-mikoko-panel2 hover:text-mikoko-text">
               <X className="h-4 w-4" />
             </button>
           </div>
@@ -674,7 +674,7 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
           </div>
 
           <div className="mb-3">
-            <h3 className="text-sm font-semibold text-white">{steps[step].title}</h3>
+            <h3 className="text-sm font-semibold text-mikoko-text">{steps[step].title}</h3>
             <p className="text-[10px] text-mikoko-muted">{steps[step].desc}</p>
           </div>
 
@@ -685,7 +685,7 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
           <button
             onClick={() => setStep(Math.max(0, step - 1))}
             disabled={step === 0}
-            className="inline-flex min-h-9 items-center gap-1.5 rounded px-3 text-xs text-mikoko-muted transition hover:text-white disabled:opacity-30"
+            className="inline-flex min-h-9 items-center gap-1.5 rounded px-3 text-xs text-mikoko-muted transition hover:text-mikoko-text disabled:opacity-30"
           >
             <ChevronLeft className="h-3.5 w-3.5" /> Anterior
           </button>

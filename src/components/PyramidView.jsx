@@ -30,14 +30,14 @@ export default function PyramidView() {
     <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         <div className="mb-6">
-          <h1 className="flex items-center gap-2 text-2xl font-semibold text-white">
+          <h1 className="flex items-center gap-2 text-2xl font-semibold text-mikoko-text">
             <Triangle className="h-6 w-6 text-mikoko-gold" /> Panel de la Pirámide
           </h1>
           <p className="mt-1 text-sm text-mikoko-muted">Estructura de capitalización por niveles de riesgo.</p>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
-          <div className="flex flex-col items-center justify-center rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-6">
+          <div className="flex flex-col items-center justify-center rounded-lg border border-mikoko-line bg-mikoko-panel p-6">
             <div className="flex flex-col items-center gap-1.5">
               {tiers.map((t) => (
                 <div key={t.key} className={`flex items-center justify-center ${t.w}`}>
@@ -47,7 +47,7 @@ export default function PyramidView() {
                       <p className="text-[10px] text-mikoko-muted">{t.desc}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold text-white">{money.format(t.value)}</p>
+                      <p className="text-sm font-semibold text-mikoko-text">{money.format(t.value)}</p>
                       <p className="text-[10px] text-mikoko-muted">{t.pct}%</p>
                     </div>
                   </div>
@@ -57,13 +57,13 @@ export default function PyramidView() {
 
             <div className="mt-6 text-center">
               <p className="text-xs uppercase tracking-[0.2em] text-mikoko-muted">Capital Total</p>
-              <p className="text-2xl font-bold text-white">{money.format(total)}</p>
+              <p className="text-2xl font-bold text-mikoko-text">{money.format(total)}</p>
             </div>
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-              <h2 className="flex items-center gap-2 text-sm font-semibold text-white">
+            <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-5">
+              <h2 className="flex items-center gap-2 text-sm font-semibold text-mikoko-text">
                 <TrendingUp className="h-4 w-4 text-mikoko-cyan" /> Salud de la Pirámide
               </h2>
               <div className="mt-4 space-y-3">
@@ -83,8 +83,8 @@ export default function PyramidView() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-              <h2 className="flex items-center gap-2 text-sm font-semibold text-white">
+            <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-5">
+              <h2 className="flex items-center gap-2 text-sm font-semibold text-mikoko-text">
                 <AlertTriangle className="h-4 w-4 text-mikoko-gold" /> Diagnóstico Eje Piramidal
               </h2>
               {pyramidResult ? (

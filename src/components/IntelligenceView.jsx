@@ -35,7 +35,7 @@ export default function IntelligenceView() {
     <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-white">Feed de Inteligencia</h1>
+          <h1 className="text-2xl font-semibold text-mikoko-text">Feed de Inteligencia</h1>
           <p className="mt-1 text-sm text-mikoko-muted">Agregación de notas, investigación y bandeja de entrada.</p>
         </div>
 
@@ -47,7 +47,7 @@ export default function IntelligenceView() {
         </div>
 
         {allItems.length === 0 ? (
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-8 text-center">
+          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-8 text-center">
             <BookOpen className="mx-auto mb-3 h-8 w-8 text-mikoko-muted" />
             <p className="text-sm text-mikoko-muted">No hay registros en las bases de datos de inteligencia (BD8, BD14, BD16, BD17).</p>
             <p className="mt-2 text-xs text-mikoko-muted">Agrega registros desde la Consola de Datos para verlos aquí.</p>
@@ -57,14 +57,14 @@ export default function IntelligenceView() {
             {allItems.map((item, i) => {
               const Icon = item.icon || FileText;
               return (
-                <div key={item.internalId || i} className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-4 transition hover:border-cyan-500/20">
+                <div key={item.internalId || i} className="rounded-lg border border-mikoko-line bg-mikoko-panel p-4 transition hover:border-mikoko-cyan/20">
                   <div className="flex items-start gap-3">
                     <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-mikoko-line bg-mikoko-panel2 text-mikoko-muted">
                       <Icon className="h-4 w-4" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-baseline gap-2">
-                        <p className="text-sm font-semibold text-white">{item.titulo || item.asunto || item.nombre || item.ticker || `Entrada #${i + 1}`}</p>
+                        <p className="text-sm font-semibold text-mikoko-text">{item.titulo || item.asunto || item.nombre || item.ticker || `Entrada #${i + 1}`}</p>
                         <span className="rounded border border-mikoko-line bg-mikoko-panel2 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-mikoko-muted">{item.sourceLabel}</span>
                       </div>
                       <p className="mt-1 line-clamp-2 text-xs leading-5 text-mikoko-muted">{item.contenido || item.notas || item.descripcion || item.cuerpo || "—"}</p>
@@ -82,14 +82,14 @@ export default function IntelligenceView() {
 }
 
 function StatCard({ label, value, icon: Icon, color }) {
-  const colors = { cyan: "border-cyan-500/30 text-cyan-400", gold: "border-mikoko-gold/30 text-mikoko-gold", emerald: "border-emerald-500/30 text-emerald-400", crimson: "border-mikoko-crimson/30 text-mikoko-crimson" };
+  const colors = { cyan: "border-mikoko-cyan/30 text-mikoko-cyan", gold: "border-mikoko-gold/30 text-mikoko-gold", emerald: "border-mikoko-emerald/30 text-mikoko-emerald", crimson: "border-mikoko-crimson/30 text-mikoko-crimson" };
   return (
-    <div className={`rounded-lg border bg-mikoko-panel/95 p-4 ${colors[color] || "border-mikoko-line text-mikoko-muted"}`}>
+    <div className={`rounded-lg border bg-mikoko-panel p-4 ${colors[color] || "border-mikoko-line text-mikoko-muted"}`}>
       <div className="flex items-center gap-2">
         <Icon className="h-4 w-4" />
         <span className="text-xs uppercase tracking-[0.15em] opacity-80">{label}</span>
       </div>
-      <p className="mt-2 text-2xl font-semibold text-white">{value}</p>
+      <p className="mt-2 text-2xl font-semibold text-mikoko-text">{value}</p>
     </div>
   );
 }

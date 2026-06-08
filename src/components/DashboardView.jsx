@@ -19,14 +19,14 @@ function formatDate(value) {
   return date.toLocaleString();
 }
 function classForVerdict(v) {
-  if (v === "AUTHORIZED") return "border-mikoko-emerald/40 bg-mikoko-emerald/10 text-mikoko-emerald";
-  if (v === "CAUTION") return "border-mikoko-amber/40 bg-mikoko-amber/10 text-mikoko-amber";
-  return "border-mikoko-crimson/40 bg-mikoko-crimson/10 text-mikoko-crimson";
+  if (v === "AUTHORIZED") return "border-mikoko-emerald/40 text-mikoko-emerald shadow-panel";
+  if (v === "CAUTION") return "border-mikoko-amber/40 text-mikoko-amber shadow-panel";
+  return "border-mikoko-crimson/40 text-mikoko-crimson shadow-panel";
 }
 function statusDot(v) {
-  if (v === "AUTHORIZED") return "bg-mikoko-emerald";
-  if (v === "CAUTION") return "bg-mikoko-amber";
-  return "bg-mikoko-crimson";
+  if (v === "AUTHORIZED") return "bg-mikoko-emerald shadow-bevel-light";
+  if (v === "CAUTION") return "bg-mikoko-amber shadow-bevel-light";
+  return "bg-mikoko-crimson shadow-bevel-light";
 }
 
 export default function DashboardView() {
@@ -61,9 +61,9 @@ export default function DashboardView() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-mikoko-void px-4 py-6 text-mikoko-text sm:px-6 lg:px-8">
+      <main className="px-4 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto flex min-h-[60vh] max-w-7xl items-center justify-center">
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel px-6 py-5 text-center shadow-glow">
+          <div className="rounded-lg px-6 py-5 text-center shadow-panel bg-mikoko-panel">
             <Activity className="mx-auto mb-3 h-7 w-7 animate-pulse text-mikoko-cyan" />
             <p className="text-sm uppercase tracking-[0.2em] text-mikoko-muted">Cargando bases de datos locales</p>
           </div>
@@ -73,19 +73,19 @@ export default function DashboardView() {
   }
 
   return (
-    <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
+    <main className="px-4 py-5 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-5">
-        <header className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-4 shadow-glow backdrop-blur">
+        <header className="rounded-lg px-4 py-4 shadow-panel bg-mikoko-panel">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-mikoko-gold">MIKOKO v27.0</p>
-              <h1 className="mt-1 text-2xl font-semibold text-white sm:text-3xl">Panel de Cartera Soberana</h1>
+              <p className="text-xs uppercase tracking-[0.28em] text-mikoko-cyan font-semibold">MIKOKO v27.0</p>
+              <h1 className="mt-1 text-2xl font-semibold text-mikoko-text sm:text-3xl">Panel de Cartera Soberana</h1>
             </div>
             <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
               <StatusPill icon={<ShieldCheck className="h-4 w-4" />} label="Checksum" value={checksum?.verdict || "DESCONOCIDO"} className={classForVerdict(checksum?.verdict)} />
-              <StatusPill icon={<UserCheck className="h-4 w-4" />} label="Modo" value={isSimulation ? "SIMULACIÓN" : "Usuario Único"} className={isSimulation ? "border-mikoko-gold/40 bg-mikoko-gold/10 text-mikoko-gold" : "border-mikoko-cyan/40 bg-mikoko-cyan/10 text-mikoko-cyan"} />
-              <StatusPill icon={<Database className="h-4 w-4" />} label="Almacenamiento" value={storagePath} className="border-mikoko-emerald/40 bg-mikoko-emerald/10 text-mikoko-emerald" />
-              <button type="button" onClick={handleRefresh} disabled={refreshing || assets.length === 0} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-mikoko-gold/40 bg-mikoko-gold/10 px-4 py-3 text-sm font-semibold text-mikoko-gold transition hover:border-mikoko-gold hover:bg-mikoko-gold/20 disabled:cursor-not-allowed disabled:opacity-50">
+              <StatusPill icon={<UserCheck className="h-4 w-4" />} label="Modo" value={isSimulation ? "SIMULACIÓN" : "Usuario Único"} className={isSimulation ? "border-mikoko-gold/40 text-mikoko-gold shadow-panel" : "border-mikoko-cyan/40 text-mikoko-cyan shadow-panel"} />
+              <StatusPill icon={<Database className="h-4 w-4" />} label="Almacenamiento" value={storagePath} className="border-mikoko-emerald/40 text-mikoko-emerald shadow-panel" />
+              <button type="button" onClick={handleRefresh} disabled={refreshing || assets.length === 0} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-mikoko-gold/40 px-4 py-3 text-sm font-semibold text-mikoko-gold transition shadow-button hover:bg-mikoko-gold/10 disabled:cursor-not-allowed disabled:opacity-50">
                 <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
                 Actualizar Precios
               </button>
@@ -94,7 +94,7 @@ export default function DashboardView() {
         </header>
 
         {(error || notice) && (
-          <section className={`rounded-lg border p-4 text-sm ${error ? "border-mikoko-crimson/40 bg-mikoko-crimson/10 text-mikoko-crimson" : "border-mikoko-emerald/40 bg-mikoko-emerald/10 text-mikoko-emerald"}`}>
+          <section className={`rounded-lg border p-4 text-sm shadow-panel ${error ? "border-mikoko-crimson/40 text-mikoko-crimson" : "border-mikoko-emerald/40 text-mikoko-emerald"} ${error ? "bg-mikoko-crimson/[0.04]" : "bg-mikoko-emerald/[0.04]"}`}>
             {error || notice}
           </section>
         )}
@@ -107,21 +107,21 @@ export default function DashboardView() {
         </section>
 
         <section className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
+          <div className="rounded-lg p-5 shadow-panel bg-mikoko-panel">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-lg font-semibold text-white">Integridad del Sistema</h2>
+                <h2 className="text-lg font-semibold text-mikoko-text">Integridad del Sistema</h2>
                 <p className="mt-1 text-sm text-mikoko-muted">{checksum?.summary}</p>
               </div>
-              <span className={`h-3 w-3 rounded-full ${statusDot(checksum?.verdict)} shadow-glow`} />
+              <span className={`h-3 w-3 rounded-full ${statusDot(checksum?.verdict)}`} />
             </div>
             <div className="grid gap-3 md:grid-cols-2">
               {Object.entries(checksum?.axisResults || {}).map(([key, axis]) => (
-                <div key={key} className="rounded-lg border border-mikoko-line bg-mikoko-panel2 p-4">
+                <div key={key} className="rounded-lg p-4 shadow-bevel-light bg-mikoko-panel2">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.18em] text-mikoko-muted">{axis.code}</p>
-                      <p className="mt-2 text-sm font-medium text-white">{axis.label}</p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-mikoko-muted font-semibold">{axis.code}</p>
+                      <p className="mt-2 text-sm font-medium text-mikoko-text">{axis.label}</p>
                     </div>
                     <AxisLight light={axis.light} />
                   </div>
@@ -131,18 +131,18 @@ export default function DashboardView() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-            <h2 className="text-lg font-semibold text-white">Distribución de Asignación</h2>
+          <div className="rounded-lg p-5 shadow-panel bg-mikoko-panel">
+            <h2 className="text-lg font-semibold text-mikoko-text">Distribución de Asignación</h2>
             <p className="mt-1 text-sm text-mikoko-muted">Resumen BD1 por nivel de riesgo final.</p>
             <div className="mt-5 space-y-4">
               {allocation.map((item) => (
                 <div key={item.tier}>
                   <div className="mb-2 flex items-center justify-between text-sm">
-                    <span className="font-medium text-white">{tierLabel(item.tier)}</span>
+                    <span className="font-medium text-mikoko-text">{tierLabel(item.tier)}</span>
                     <span className="text-mikoko-muted">{formatMoney(item.value)} · {item.pct.toFixed(1)}%</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-mikoko-line">
-                    <div className={`h-full rounded-full ${barClass(item.tier)}`} style={{ width: `${Math.min(100, item.pct)}%` }} />
+                  <div className="h-2 overflow-hidden rounded-full shadow-bevel-light bg-mikoko-line/50">
+                    <div className={`h-full rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] ${barClass(item.tier)}`} style={{ width: `${Math.min(100, item.pct)}%` }} />
                   </div>
                 </div>
               ))}
@@ -151,13 +151,13 @@ export default function DashboardView() {
         </section>
 
         <section className="grid gap-5 xl:grid-cols-[0.8fr_1.2fr]">
-          <form onSubmit={handleSubmit} className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
+          <form onSubmit={handleSubmit} className="rounded-lg p-5 shadow-panel bg-mikoko-panel">
             <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-mikoko-gold/40 bg-mikoko-gold/10 text-mikoko-gold">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-mikoko-gold/30 text-mikoko-gold shadow-panel-pressed bg-mikoko-gold/[0.06]">
                 <Wallet className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-white">Nueva Transacción</h2>
+                <h2 className="text-lg font-semibold text-mikoko-text">Nueva Transacción</h2>
                 <p className="text-sm text-mikoko-muted">Activos desconocidos se guardan como borradores y se bloquean de BD1.</p>
               </div>
             </div>
@@ -185,19 +185,19 @@ export default function DashboardView() {
                 <input required type="datetime-local" value={form.timestamp} onChange={(e) => setForm({ ...form, timestamp: e.target.value })} className="field" />
               </Field>
             </div>
-            <button type="submit" disabled={submitting} className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-mikoko-emerald/50 bg-mikoko-emerald/15 px-4 py-3 text-sm font-semibold text-mikoko-emerald transition hover:border-mikoko-emerald hover:bg-mikoko-emerald/25 disabled:cursor-not-allowed disabled:opacity-60">
+            <button type="submit" disabled={submitting} className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-mikoko-emerald/50 px-4 py-3 text-sm font-semibold text-mikoko-emerald transition shadow-button hover:bg-mikoko-emerald/10 disabled:cursor-not-allowed disabled:opacity-60">
               {submitting ? "Escribiendo Ledger Local..." : isSimulation ? "[SIM] Simular Transacción" : "Confirmar Transacción Local"}
             </button>
           </form>
 
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
+          <div className="rounded-lg p-5 shadow-panel bg-mikoko-panel">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-lg font-semibold text-white">Tabla de Activos</h2>
+                <h2 className="text-lg font-semibold text-mikoko-text">Tabla de Activos</h2>
                 <p className="mt-1 text-sm text-mikoko-muted">Estado de pasaporte BD3 con resúmenes de cantidad BD1.</p>
               </div>
               {checksum?.verdict !== "AUTHORIZED" && (
-                <div className="hidden items-center gap-2 rounded-lg border border-mikoko-crimson/40 bg-mikoko-crimson/10 px-3 py-2 text-xs font-medium text-mikoko-crimson sm:flex">
+                <div className="hidden items-center gap-2 rounded-lg border border-mikoko-crimson/30 px-3 py-2 text-xs font-medium text-mikoko-crimson shadow-panel sm:flex">
                   <AlertTriangle className="h-4 w-4" />
                   Operaciones bloqueadas
                 </div>
@@ -215,14 +215,14 @@ export default function DashboardView() {
                     <th className="px-3 py-3">Tesis</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-mikoko-line">
+                <tbody className="divide-y divide-mikoko-line/60">
                   {assets.length === 0 ? (
                     <tr><td colSpan="6" className="px-3 py-8 text-center text-mikoko-muted">No hay activos BD3 aún. La primera transacción creará un pasaporte borrador bajo Strict Block.</td></tr>
                   ) : (
                     assets.map((asset) => (
-                      <tr key={asset.internalId} className="transition hover:bg-mikoko-panel2/70">
+                      <tr key={asset.internalId} className="transition hover:bg-mikoko-panel2/50">
                         <td className="px-3 py-4">
-                          <p className="font-semibold text-white">{asset.ticker}</p>
+                          <p className="font-semibold text-mikoko-text">{asset.ticker}</p>
                           <p className="mt-1 max-w-48 truncate text-xs text-mikoko-muted">{asset.nombre}</p>
                         </td>
                         <td className="px-3 py-4 text-mikoko-text">{numberFmt.format(asset.quantity || 0)}</td>
@@ -245,7 +245,7 @@ export default function DashboardView() {
 
 function StatusPill({ icon, label, value, className }) {
   return (
-    <div className={`min-h-12 rounded-lg border px-3 py-2 ${className}`}>
+    <div className={`min-h-12 rounded-lg border px-3 py-2 bg-mikoko-panel2/50 ${className}`}>
       <div className="flex items-center gap-2">
         {icon}
         <span className="text-[0.68rem] uppercase tracking-[0.18em] opacity-80">{label}</span>
@@ -258,9 +258,9 @@ function StatusPill({ icon, label, value, className }) {
 function MetricCard({ label, value, sub, accent }) {
   const accents = { emerald: "border-mikoko-emerald/30 text-mikoko-emerald", crimson: "border-mikoko-crimson/30 text-mikoko-crimson", cyan: "border-mikoko-cyan/30 text-mikoko-cyan", gold: "border-mikoko-gold/30 text-mikoko-gold" };
   return (
-    <div className={`rounded-lg border bg-mikoko-panel/95 p-5 ${accents[accent]}`}>
+    <div className={`rounded-lg border shadow-panel bg-mikoko-panel p-5 ${accents[accent]}`}>
       <p className="text-xs uppercase tracking-[0.2em] text-mikoko-muted">{label}</p>
-      <p className="mt-3 text-2xl font-semibold text-white">{value}</p>
+      <p className="mt-3 text-2xl font-semibold text-mikoko-text">{value}</p>
       {sub && <p className="mt-2 text-sm text-mikoko-muted">{sub}</p>}
     </div>
   );
@@ -276,7 +276,7 @@ function Field({ label, children }) {
 }
 
 function AxisLight({ light }) {
-  const classes = { GREEN: "bg-mikoko-emerald", YELLOW: "bg-mikoko-amber", ORANGE: "bg-mikoko-gold", RED: "bg-mikoko-crimson" };
+  const classes = { GREEN: "bg-mikoko-emerald shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]", YELLOW: "bg-mikoko-amber shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]", ORANGE: "bg-mikoko-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]", RED: "bg-mikoko-crimson shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" };
   return <span className={`mt-1 h-3 w-3 shrink-0 rounded-full ${classes[light] || "bg-mikoko-muted"}`} />;
 }
 
@@ -292,7 +292,7 @@ function FreshnessBadge({ status, date }) {
   const stale = status.status === "OBSOLETO";
   return (
     <div>
-      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${stale ? "border-mikoko-crimson/40 bg-mikoko-crimson/10 text-mikoko-crimson" : "border-mikoko-emerald/40 bg-mikoko-emerald/10 text-mikoko-emerald"}`}>
+      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold shadow-bevel-light ${stale ? "border-mikoko-crimson/40 bg-mikoko-crimson/10 text-mikoko-crimson" : "border-mikoko-emerald/40 bg-mikoko-emerald/10 text-mikoko-emerald"}`}>
         {status.status}
       </span>
       <p className="mt-1 text-xs text-mikoko-muted">{formatDate(date)}</p>
@@ -301,7 +301,7 @@ function FreshnessBadge({ status, date }) {
 }
 
 function thesisBadge(status) {
-  if (status === "APROBADA") return "inline-flex rounded-full border border-mikoko-emerald/40 bg-mikoko-emerald/10 px-2.5 py-1 text-xs font-semibold text-mikoko-emerald";
-  if (status === "INVALIDADA") return "inline-flex rounded-full border border-mikoko-crimson/40 bg-mikoko-crimson/10 px-2.5 py-1 text-xs font-semibold text-mikoko-crimson";
-  return "inline-flex rounded-full border border-mikoko-amber/40 bg-mikoko-amber/10 px-2.5 py-1 text-xs font-semibold text-mikoko-amber";
+  if (status === "APROBADA") return "inline-flex rounded-full border border-mikoko-emerald/40 bg-mikoko-emerald/10 px-2.5 py-1 text-xs font-semibold text-mikoko-emerald shadow-bevel-light";
+  if (status === "INVALIDADA") return "inline-flex rounded-full border border-mikoko-crimson/40 bg-mikoko-crimson/10 px-2.5 py-1 text-xs font-semibold text-mikoko-crimson shadow-bevel-light";
+  return "inline-flex rounded-full border border-mikoko-amber/40 bg-mikoko-amber/10 px-2.5 py-1 text-xs font-semibold text-mikoko-amber shadow-bevel-light";
 }

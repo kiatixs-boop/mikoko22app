@@ -22,7 +22,7 @@ export default function WorkflowsView() {
     <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-white">Launchpad de Workflows</h1>
+          <h1 className="text-2xl font-semibold text-mikoko-text">Launchpad de Workflows</h1>
           <p className="mt-1 text-sm text-mikoko-muted">Procedimientos operacionales del sistema MIKOKO.</p>
         </div>
 
@@ -30,14 +30,14 @@ export default function WorkflowsView() {
           {WORKFLOWS.map((wf) => {
             const Icon = wf.icon;
             return (
-              <div key={wf.id} className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5 transition hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(0,224,255,0.08)]">
+              <div key={wf.id} className="rounded-lg border border-mikoko-line bg-mikoko-panel p-5 transition hover:border-mikoko-cyan/30 hover:shadow-panel-raised">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-mikoko-gold/40 bg-mikoko-gold/10 text-mikoko-gold">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-[0.18em] text-mikoko-muted">{wf.id}</p>
-                    <p className="text-sm font-semibold text-white">{wf.name}</p>
+                    <p className="text-sm font-semibold text-mikoko-text">{wf.name}</p>
                   </div>
                 </div>
                 <p className="mb-5 text-xs leading-5 text-mikoko-muted">{wf.desc}</p>
@@ -48,7 +48,7 @@ export default function WorkflowsView() {
                   >
                     Ejecutar
                   </button>
-                  <button className="inline-flex min-h-9 items-center justify-center rounded-lg border border-mikoko-line bg-mikoko-panel2 px-3 py-2 text-xs text-mikoko-muted transition hover:text-white">
+                  <button className="inline-flex min-h-9 items-center justify-center rounded-lg border border-mikoko-line bg-mikoko-panel2 px-3 py-2 text-xs text-mikoko-muted transition hover:text-mikoko-text">
                     Info
                   </button>
                 </div>
@@ -57,11 +57,11 @@ export default function WorkflowsView() {
           })}
         </div>
 
-        <div className="mt-8 rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-          <h2 className="text-sm font-semibold text-white">Consola de Sistema</h2>
+        <div className="mt-8 rounded-lg border border-mikoko-line bg-mikoko-panel p-5">
+          <h2 className="text-sm font-semibold text-mikoko-text">Consola de Sistema</h2>
           <p className="mt-1 text-xs text-mikoko-muted">Estado actual: {dbs ? `${dbs.bd2?.records?.length || 0} transacciones · ${dbs.bd1?.records?.length || 0} lotes · ${dbs.bd3?.records?.length || 0} activos` : "Desconectado"}</p>
           <div className="mt-4 flex gap-3">
-            <button onClick={() => handleAction("reload")} className="inline-flex min-h-9 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-4 py-2 text-xs text-mikoko-muted transition hover:text-white">
+            <button onClick={() => handleAction("reload")} className="inline-flex min-h-9 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-4 py-2 text-xs text-mikoko-muted transition hover:text-mikoko-text">
               <RefreshCw className="h-3.5 w-3.5" /> Recargar BD
             </button>
           </div>

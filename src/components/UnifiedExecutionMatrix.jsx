@@ -88,7 +88,7 @@ export default function UnifiedExecutionMatrix() {
     <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-5">
         <div>
-          <h1 className="flex items-center gap-2 text-2xl font-semibold text-white">
+          <h1 className="flex items-center gap-2 text-2xl font-semibold text-mikoko-text">
             <Crosshair className="h-6 w-6 text-mikoko-crimson" /> Mission Deployment Matrix
           </h1>
           <p className="mt-1 text-sm text-mikoko-muted">
@@ -107,14 +107,14 @@ export default function UnifiedExecutionMatrix() {
                 className={`flex items-start gap-4 rounded-lg border p-5 text-left transition ${
                   active
                     ? `${dir.borderColor} ${dir.bgColor}`
-                    : "border-mikoko-line bg-mikoko-panel/95 hover:border-cyan-500/20"
+                    : "border-mikoko-line bg-mikoko-panel hover:border-mikoko-cyan/20"
                 }`}
               >
                 <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${dir.borderColor} ${dir.bgColor}`}>
                   <Icon className={`h-6 w-6 ${dir.color}`} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className={`text-base font-semibold ${active ? dir.color : "text-white"}`}>
+                  <p className={`text-base font-semibold ${active ? dir.color : "text-mikoko-text"}`}>
                     {dir.label}
                   </p>
                   <p className="mt-1 text-sm text-mikoko-muted">{dir.desc}</p>
@@ -186,19 +186,19 @@ export default function UnifiedExecutionMatrix() {
         )}
 
         <div className="grid gap-4 sm:grid-cols-3">
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-4">
+          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-4">
             <p className="text-[10px] uppercase tracking-[0.18em] text-mikoko-muted">Capital Total</p>
-            <p className="mt-2 text-lg font-semibold text-white">{money.format(totalPortfolio)}</p>
+            <p className="mt-2 text-lg font-semibold text-mikoko-text">{money.format(totalPortfolio)}</p>
           </div>
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-4">
+          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-4">
             <p className="text-[10px] uppercase tracking-[0.18em] text-mikoko-muted">Tier 3+4 Proporción</p>
             <p className={`mt-2 text-lg font-semibold ${tier34Pct > 0.3 ? "text-mikoko-crimson" : "text-mikoko-emerald"}`}>
               {(tier34Pct * 100).toFixed(1)}%
             </p>
           </div>
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-4">
+          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-4">
             <p className="text-[10px] uppercase tracking-[0.18em] text-mikoko-muted">Posiciones Activas BD12</p>
-            <p className="mt-2 text-lg font-semibold text-white">{positions.length}</p>
+            <p className="mt-2 text-lg font-semibold text-mikoko-text">{positions.length}</p>
           </div>
         </div>
       </div>
@@ -253,13 +253,13 @@ function DeFiForm({
   const ops = ["LP_POOL", "LENDING", "FUTURES", "STAKING", "VAULT"];
 
   return (
-    <div className="rounded-lg border border-mikoko-cyan/30 bg-mikoko-panel/95 p-6">
+    <div className="rounded-lg border border-mikoko-cyan/30 bg-mikoko-panel p-6">
       <div className="mb-5 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-mikoko-cyan/40 bg-mikoko-cyan/10 text-mikoko-cyan">
           <Coins className="h-5 w-5" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-white">Directiva DeFi / Futures / Lending</h2>
+          <h2 className="text-base font-semibold text-mikoko-text">Directiva DeFi / Futures / Lending</h2>
           <p className="text-xs text-mikoko-muted">Colateral, apalancamiento y contrato → BD2, BD1, BD11, BD12</p>
         </div>
       </div>
@@ -446,13 +446,13 @@ function ExitRebalanceForm({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-lg border border-mikoko-gold/30 bg-mikoko-panel/95 p-6">
+      <div className="rounded-lg border border-mikoko-gold/30 bg-mikoko-panel p-6">
         <div className="mb-5 flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-mikoko-gold/40 bg-mikoko-gold/10 text-mikoko-gold">
             <Target className="h-5 w-5" />
           </div>
           <div>
-            <h2 className="text-base font-semibold text-white">Directiva Exit Plan / Rebalance</h2>
+            <h2 className="text-base font-semibold text-mikoko-text">Directiva Exit Plan / Rebalance</h2>
             <p className="text-xs text-mikoko-muted">Cruzando reglas BD4 — ejecución sobre BD1, BD2</p>
           </div>
         </div>
@@ -463,7 +463,7 @@ function ExitRebalanceForm({
             className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-xs font-semibold transition ${
               mode === "exit"
                 ? "border-mikoko-crimson/40 bg-mikoko-crimson/10 text-mikoko-crimson"
-                : "border-mikoko-line text-mikoko-muted hover:text-white"
+                : "border-mikoko-line text-mikoko-muted hover:text-mikoko-text"
             }`}
           >
             <ArrowUpDown className="h-3.5 w-3.5" /> Exit Position
@@ -473,7 +473,7 @@ function ExitRebalanceForm({
             className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-xs font-semibold transition ${
               mode === "rebalance"
                 ? "border-mikoko-gold/40 bg-mikoko-gold/10 text-mikoko-gold"
-                : "border-mikoko-line text-mikoko-muted hover:text-white"
+                : "border-mikoko-line text-mikoko-muted hover:text-mikoko-text"
             }`}
           >
             <Layers className="h-3.5 w-3.5" /> Rebalance Portfolio
@@ -486,29 +486,29 @@ function ExitRebalanceForm({
               <Shield className="h-3.5 w-3.5" /> Reglas Constitucionales BD4
             </h3>
             <div className="grid gap-2 text-xs sm:grid-cols-3">
-              <div className="rounded border border-mikoko-line bg-mikoko-void px-3 py-2">
+              <div className="rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2">
                 <span className="text-mikoko-muted">Target T1:</span>{" "}
-                <span className="text-white">{((constitution.targetAllocation?.TIER_1 || 0) * 100).toFixed(0)}%</span>
+                <span className="text-mikoko-text">{((constitution.targetAllocation?.TIER_1 || 0) * 100).toFixed(0)}%</span>
               </div>
-              <div className="rounded border border-mikoko-line bg-mikoko-void px-3 py-2">
+              <div className="rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2">
                 <span className="text-mikoko-muted">Target T2:</span>{" "}
-                <span className="text-white">{((constitution.targetAllocation?.TIER_2 || 0) * 100).toFixed(0)}%</span>
+                <span className="text-mikoko-text">{((constitution.targetAllocation?.TIER_2 || 0) * 100).toFixed(0)}%</span>
               </div>
-              <div className="rounded border border-mikoko-line bg-mikoko-void px-3 py-2">
+              <div className="rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2">
                 <span className="text-mikoko-muted">Target T3:</span>{" "}
-                <span className="text-white">{((constitution.targetAllocation?.TIER_3 || 0) * 100).toFixed(0)}%</span>
+                <span className="text-mikoko-text">{((constitution.targetAllocation?.TIER_3 || 0) * 100).toFixed(0)}%</span>
               </div>
-              <div className="rounded border border-mikoko-line bg-mikoko-void px-3 py-2">
+              <div className="rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2">
                 <span className="text-mikoko-muted">Target T4:</span>{" "}
-                <span className="text-white">{((constitution.targetAllocation?.TIER_4 || 0) * 100).toFixed(0)}%</span>
+                <span className="text-mikoko-text">{((constitution.targetAllocation?.TIER_4 || 0) * 100).toFixed(0)}%</span>
               </div>
-              <div className="rounded border border-mikoko-line bg-mikoko-void px-3 py-2">
+              <div className="rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2">
                 <span className="text-mikoko-muted">Hard Cap High Risk:</span>{" "}
-                <span className="text-white">{(constitution.hardCapHighRisk * 100).toFixed(0)}%</span>
+                <span className="text-mikoko-text">{(constitution.hardCapHighRisk * 100).toFixed(0)}%</span>
               </div>
-              <div className="rounded border border-mikoko-line bg-mikoko-void px-3 py-2">
+              <div className="rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2">
                 <span className="text-mikoko-muted">Rebalance Threshold:</span>{" "}
-                <span className="text-white">{(constitution.rebalanceThreshold * 100).toFixed(0)}%</span>
+                <span className="text-mikoko-text">{(constitution.rebalanceThreshold * 100).toFixed(0)}%</span>
               </div>
             </div>
           </div>
@@ -554,11 +554,11 @@ function ExitRebalanceForm({
           <div className="mt-4 rounded-lg border border-mikoko-line bg-mikoko-panel2 p-3">
             <div className="flex items-center gap-2 text-xs text-mikoko-muted">
               <Wallet className="h-3.5 w-3.5" />
-              Lote: <span className="font-mono text-white">{numberFmt.format(selectedLot.currentQuantity)} {selectedLot.ticker}</span>
+              Lote: <span className="font-mono text-mikoko-text">{numberFmt.format(selectedLot.currentQuantity)} {selectedLot.ticker}</span>
               <span className="mx-1">·</span>
-              Valor: <span className="font-mono text-white">{money.format(selectedLot.currentValueUSD)}</span>
+              Valor: <span className="font-mono text-mikoko-text">{money.format(selectedLot.currentValueUSD)}</span>
               <span className="mx-1">·</span>
-              Entry avg: <span className="font-mono text-white">{money.format(selectedLot.averageEntryUSD)}</span>
+              Entry avg: <span className="font-mono text-mikoko-text">{money.format(selectedLot.averageEntryUSD)}</span>
             </div>
           </div>
         )}
@@ -592,7 +592,7 @@ function ExitRebalanceForm({
       </div>
 
       {simulation && (
-        <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-4">
+        <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-4">
           <h3 className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-mikoko-cyan">
             <BarChart3 className="h-3.5 w-3.5" /> Simulación de Impacto Post-Exit
           </h3>
@@ -600,13 +600,13 @@ function ExitRebalanceForm({
             {["TIER_1", "TIER_2", "TIER_3", "TIER_4"].map((tier) => (
               <div key={tier} className="rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2 text-center">
                 <p className="text-[9px] uppercase tracking-wider text-mikoko-muted">{tier}</p>
-                <p className="mt-1 text-xs font-mono text-white">{money.format(simulation.capitalByTier[tier] || 0)}</p>
+                <p className="mt-1 text-xs font-mono text-mikoko-text">{money.format(simulation.capitalByTier[tier] || 0)}</p>
               </div>
             ))}
           </div>
           <div className="mt-3 flex items-center gap-3 text-xs">
             <span className="text-mikoko-muted">Nuevo total:</span>
-            <span className="font-mono text-white">{money.format(simulation.total)}</span>
+            <span className="font-mono text-mikoko-text">{money.format(simulation.total)}</span>
             <span className="text-mikoko-muted">·</span>
             <span className="text-mikoko-muted">Tier 3+4:</span>
             <span className={`font-mono ${simulation.highRiskPct > 0.3 ? "text-mikoko-crimson" : "text-mikoko-emerald"}`}>
@@ -631,15 +631,15 @@ function ExitRebalanceForm({
               <h3 className="text-base font-bold text-mikoko-crimson">⚠ CONSTITUTION BREACH</h3>
               <p className="mt-2 text-sm leading-6 text-mikoko-crimson/90">{breach.message}</p>
               <div className="mt-4 flex gap-3">
-                <div className="rounded-lg border border-mikoko-crimson/30 bg-mikoko-void px-4 py-2 text-center">
+                <div className="rounded-lg border border-mikoko-crimson/30 bg-mikoko-panel2 px-4 py-2 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-mikoko-muted">Actual Tier 3+4</p>
-                  <p className="text-lg font-bold text-white">{(breach.currentPct * 100).toFixed(1)}%</p>
+                  <p className="text-lg font-bold text-mikoko-text">{(breach.currentPct * 100).toFixed(1)}%</p>
                 </div>
-                <div className="rounded-lg border border-mikoko-crimson/30 bg-mikoko-void px-4 py-2 text-center">
+                <div className="rounded-lg border border-mikoko-crimson/30 bg-mikoko-panel2 px-4 py-2 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-mikoko-muted">Post-Exit Tier 3+4</p>
                   <p className="text-lg font-bold text-mikoko-crimson">{(breach.newPct * 100).toFixed(1)}%</p>
                 </div>
-                <div className="rounded-lg border border-mikoko-crimson/30 bg-mikoko-void px-4 py-2 text-center">
+                <div className="rounded-lg border border-mikoko-crimson/30 bg-mikoko-panel2 px-4 py-2 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-mikoko-muted">Límite Constitucional</p>
                   <p className="text-lg font-bold text-mikoko-amber">{(breach.cap * 100).toFixed(0)}%</p>
                 </div>

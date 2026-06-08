@@ -50,7 +50,7 @@ export default function DataConsoleView() {
     <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-5">
         <div>
-          <h1 className="flex items-center gap-2 text-2xl font-semibold text-white">
+          <h1 className="flex items-center gap-2 text-2xl font-semibold text-mikoko-text">
             <Server className="h-6 w-6 text-mikoko-cyan" /> Consola de Datos Unificada
           </h1>
           <p className="mt-1 text-sm text-mikoko-muted">Navega y administra las 22 bases de datos del sistema.</p>
@@ -70,7 +70,7 @@ export default function DataConsoleView() {
             </select>
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={() => setShowRaw(!showRaw)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-4 py-2 text-xs text-mikoko-muted transition hover:text-white">
+            <button onClick={() => setShowRaw(!showRaw)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-mikoko-line bg-mikoko-panel2 px-4 py-2 text-xs text-mikoko-muted transition hover:text-mikoko-text">
               {showRaw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />} {showRaw ? "Ver limpio" : "Ver raw"}
             </button>
             <div className="rounded-lg border border-mikoko-line bg-mikoko-panel2 px-4 py-2 text-xs text-mikoko-muted">
@@ -81,8 +81,8 @@ export default function DataConsoleView() {
 
         {meta && (
           <div className="grid gap-4 lg:grid-cols-[1fr_1.5fr]">
-            <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-              <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
+            <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-5">
+              <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold text-mikoko-text">
                 <Plus className="h-4 w-4 text-mikoko-emerald" /> Agregar Registro
               </h2>
               <p className="mb-3 text-xs text-mikoko-muted">Ingresa un objeto JSON válido para agregarlo a {meta[0].toUpperCase()}.</p>
@@ -101,9 +101,9 @@ export default function DataConsoleView() {
               </button>
             </div>
 
-            <div className="overflow-hidden rounded-lg border border-mikoko-line bg-mikoko-panel/95">
+            <div className="overflow-hidden rounded-lg border border-mikoko-line bg-mikoko-panel">
               <div className="border-b border-mikoko-line px-5 py-3">
-                <h2 className="flex items-center gap-2 text-sm font-semibold text-white">
+                <h2 className="flex items-center gap-2 text-sm font-semibold text-mikoko-text">
                   <List className="h-4 w-4 text-mikoko-gold" /> {meta[0].toUpperCase()} — {meta[1]}
                 </h2>
               </div>
@@ -131,7 +131,7 @@ export default function DataConsoleView() {
                             const val = record[k];
                             const display = val === null || val === undefined ? "—" : typeof val === "object" ? JSON.stringify(val).slice(0, 40) + "..." : String(val);
                             return (
-                              <td key={k} className="max-w-40 truncate whitespace-nowrap px-4 py-3 text-white">
+                              <td key={k} className="max-w-40 truncate whitespace-nowrap px-4 py-3 text-mikoko-text">
                                 {display}
                               </td>
                             );
@@ -147,9 +147,9 @@ export default function DataConsoleView() {
         )}
 
         {showRaw && currentDb && (
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-            <h2 className="mb-3 text-sm font-semibold text-white">Raw JSON — {selectedDb.toUpperCase()}</h2>
-            <pre className="max-h-96 overflow-auto rounded border border-mikoko-line bg-mikoko-void p-4 font-mono text-xs text-mikoko-text">
+          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-5">
+            <h2 className="mb-3 text-sm font-semibold text-mikoko-text">Raw JSON — {selectedDb.toUpperCase()}</h2>
+            <pre className="max-h-96 overflow-auto rounded border border-mikoko-line bg-mikoko-panel2 p-4 font-mono text-xs text-mikoko-text">
               {JSON.stringify(currentDb, null, 2)}
             </pre>
           </div>

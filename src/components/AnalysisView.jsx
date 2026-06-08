@@ -64,13 +64,13 @@ export default function AnalysisView() {
     <main className="min-h-screen bg-transparent px-4 py-5 text-mikoko-text sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-6">
         <div>
-          <h1 className="text-2xl font-semibold text-white">Estación de Análisis</h1>
+          <h1 className="text-2xl font-semibold text-mikoko-text">Estación de Análisis</h1>
           <p className="mt-1 text-sm text-mikoko-muted">Asignación por niveles de riesgo y calculadora de rebalanceo.</p>
         </div>
 
         <section className="grid gap-5 lg:grid-cols-2">
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-            <h2 className="flex items-center gap-2 text-lg font-semibold text-white">
+          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-5">
+            <h2 className="flex items-center gap-2 text-lg font-semibold text-mikoko-text">
               <BarChart3 className="h-5 w-5 text-mikoko-cyan" /> Asignación Actual
             </h2>
             <p className="mt-1 text-sm text-mikoko-muted">Capital total: {money.format(total)}</p>
@@ -90,8 +90,8 @@ export default function AnalysisView() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel/95 p-5">
-            <h2 className="flex items-center gap-2 text-lg font-semibold text-white">
+          <div className="rounded-lg border border-mikoko-line bg-mikoko-panel p-5">
+            <h2 className="flex items-center gap-2 text-lg font-semibold text-mikoko-text">
               <Target className="h-5 w-5 text-mikoko-gold" /> Calculadora de Rebalanceo
             </h2>
             <p className="mt-1 text-sm text-mikoko-muted">Ajusta los porcentajes objetivo por nivel.</p>
@@ -108,7 +108,7 @@ export default function AnalysisView() {
                     max="80"
                     value={Math.round((targetPcts[t.key] || 0) * 100)}
                     onChange={(e) => handleSlider(t.key, e.target.value)}
-                    className="w-full cursor-pointer accent-cyan-500"
+                    className="w-full cursor-pointer accent-[#C47B3B]"
                   />
                 </div>
               ))}
@@ -123,7 +123,7 @@ export default function AnalysisView() {
                   {rebalancePlan.map((item) => {
                     const needBuy = item.diff > 0;
                     return (
-                      <div key={item.key} className="flex items-center justify-between rounded border border-mikoko-line bg-mikoko-void px-3 py-2">
+                      <div key={item.key} className="flex items-center justify-between rounded border border-mikoko-line bg-mikoko-panel2 px-3 py-2">
                         <span className={item.color}>{item.label}</span>
                         <span className="flex items-center gap-2">
                           <span className="text-mikoko-muted">{money.format(item.currentValue)}</span>
