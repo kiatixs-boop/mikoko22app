@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANUAL DE OPERACIONES — MIKOKO v27.0</title>
+<style>
+  :root {
+    --void: #0d0e12;
+    --panel: #141821;
+    --panel2: #1b2230;
+    --line: #273246;
+    --text: #C8D4F0;
+    --muted: #6B7A99;
+    --emerald: #00C896;
+    --crimson: #FF3B5C;
+    --gold: #C6A15B;
+    --cyan: #00E0FF;
+    --amber: #F5A623;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--void);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  h1 {
+    font-size: 2em;
+    color: var(--gold);
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.9em;
+    margin-bottom: 32px;
+    padding: 12px 16px;
+    background: var(--panel);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+  }
+  .meta strong { color: var(--text); }
+  hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+  h2 {
+    font-size: 1.4em;
+    color: var(--cyan);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  h3 {
+    font-size: 1.1em;
+    color: var(--emerald);
+    margin-top: 28px;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-size: 1em;
+    color: var(--gold);
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 14px; }
+  strong { color: #fff; }
+  em { color: var(--amber); }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ul, ol { margin: 12px 0 12px 24px; }
+  li { margin-bottom: 6px; }
+  li strong { color: var(--text); }
+  code {
+    font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+    background: var(--panel2);
+    color: var(--gold);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.88em;
+  }
+  pre {
+    background: var(--panel2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+    margin: 16px 0;
+    font-size: 0.85em;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+  blockquote {
+    border-left: 3px solid var(--gold);
+    background: var(--panel);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+    color: var(--muted);
+  }
+  blockquote strong { color: var(--text); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9em;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--panel2);
+    color: var(--gold);
+    font-weight: 600;
+  }
+  td { background: var(--panel); }
+  tr:hover td { background: var(--panel2); }
+  .toc { margin: 16px 0 24px; }
+  .toc ol { list-style: none; counter-reset: toc; }
+  .toc li { counter-increment: toc; margin-bottom: 4px; }
+  .toc li::before { content: counter(toc) ". "; color: var(--muted); }
+  .toc a { color: var(--text); }
+  .toc a:hover { color: var(--cyan); }
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  ::selection { background: var(--gold); color: var(--void); }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--void); }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+</style>
+</head>
+<body>
+
+<h1>MANUAL DE OPERACIONES — MIKOKO v27.0</h1>
+
+<div class="meta">
+<strong>Clasificación:</strong> USO INTERNO — LOCALHOST ONLY<br>
+<strong>Versión del sistema:</strong> 27.0<br>
+<strong>Modo de almacenamiento:</strong> 100% offline, Single Source of Truth (SSOT) en JSON local<br>
+<strong>Última actualización:</strong> junio 2026<br>
+<strong>Doctrina operativa:</strong> Frío, analítico, altamente disciplinado, orientado a la supervivencia.
+</div>
+
+<hr>
+
+<h2>Índice</h2>
+<div class="toc">
+<ol>
+  <li><a href="#s1">¡Bienvenido al Búnker! — Introducción</a></li>
+  <li><a href="#s2">Primer Despegue — Arranque Inicial</a></li>
+  <li><a href="#s3">Puesta a Punto Inicial — Onboarding</a></li>
+  <li><a href="#s4">Tour Completo del HUD — Cada Rincón del Búnker</a></li>
+  <li><a href="#s5">Workflows — Protocolos de Despliegue</a></li>
+  <li><a href="#s6">Modo Simulación vs. LIVE</a></li>
+  <li><a href="#s7">El Checksum — El Sistema de Soporte Vital (6 Ejes)</a></li>
+  <li><a href="#s8">La Pirámide Estratégica — Doctrina de Asignación de Capital</a></li>
+  <li><a href="#s9">Arquitectura del Sistema — Los Cimientos del Búnker</a></li>
+  <li><a href="#s10">Respaldos y Seguridad — Protocolo de Supervivencia</a></li>
+  <li><a href="#s11">Solución de Problemas — Diagnóstico y Reparación</a></li>
+  <li><a href="#s12">Buenas Prácticas y Doctrina Operativa</a></li>
+  <li><a href="#s13">FAQ — Base de Conocimiento</a></li>
+  <li><a href="#s14">Glosario de Términos MIKOKO</a></li>
+</ol>
+</div>
+
+<hr>
+
+<h2 id="s1">1. ¡Bienvenido al Búnker! — Introducción</h2>
+
+<h3>1.1 ¿Qué es MIKOKO?</h3>
+<p>MIKOKO es un <strong>sistema de mando para la gestión de carteras de criptoactivos</strong>. Opera como un búnker digital autónomo: todo el sistema reside en tu máquina, sin conexión a servidores externos, sin telemetría, sin cuentas de usuario, sin dependencia de servicios en la nube. Tus datos no abandonan tu disco duro.</p>
+<p>El mercado de criptoactivos es un <strong>territorio hostil</strong>. La volatilidad, la sobreinformación, el ruido constante y la presión emocional trabajan en tu contra. MIKOKO está diseñado para darte una ventaja estructural: reemplaza la improvisación con <strong>protocolos</strong>, el pánico con <strong>métricas frías</strong>, y la memoria falible con un <strong>registro inmutable</strong>.</p>
+<p>No es una herramienta de trading automatizado ni un bot. No ejecuta órdenes ni se conecta a exchanges. Es un <strong>centro de inteligencia y control</strong> para que seas tú quien tome las decisiones, con la mejor información posible, en el menor tiempo posible.</p>
+
+<h3>1.2 ¿Qué problema resuelve?</h3>
+<p>Sin un sistema como MIKOKO, gestionar una cartera de criptoactivos implica:</p>
+<ul>
+  <li><strong>Hojas de cálculo dispersas</strong> que se desactualizan y nadie mantiene.</li>
+  <li><strong>Notas sueltas</strong> en el móvil, en apps de notas, en tweets guardados.</li>
+  <li><strong>Registros mentales</strong> de precios de entrada, cantidades y estrategias.</li>
+  <li><strong>Decisiones emocionales</strong> tomadas sin contexto histórico.</li>
+  <li><strong>Dificultad para saber</strong> qué posees realmente, dónde está, cuánto vale y qué riesgo corres.</li>
+</ul>
+<p>MIKOKO centraliza toda esa información en un solo lugar, con un solo formato, y con protocolos de registro que garantizan que los datos sean precisos, estén actualizados y sean auditables.</p>
+
+<h3>1.3 Filosofía operativa</h3>
+<table>
+  <tr><th>Principio</th><th>Significado</th></tr>
+  <tr><td><strong>Single Source of Truth</strong></td><td>Cada dato tiene una única fuente autoritativa. No hay duplicados ni versiones en conflicto.</td></tr>
+  <tr><td><strong>100% localhost</strong></td><td>Tus datos nunca salen de tu máquina. Sin nube, sin terceros, sin telemetría.</td></tr>
+  <tr><td><strong>Protocolos sobre impulsos</strong></td><td>Toda acción significativa se ejecuta siguiendo un workflow predefinido. No se improvisa.</td></tr>
+  <tr><td><strong>Registro inmutable</strong></td><td>Las transacciones no se eliminan ni modifican. El libro mayor es irreversible.</td></tr>
+  <tr><td><strong>Checksum de integridad</strong></td><td>El sistema audita automáticamente su propio estado y bloquea operaciones si detecta anomalías.</td></tr>
+</table>
+
+<h3>1.4 ¿Qué necesitas para empezar?</h3>
+<ul>
+  <li><strong>Node.js</strong> (versión 18 o superior) instalado en tu máquina.</li>
+  <li><strong>npm</strong> (viene con Node.js).</li>
+  <li>Un navegador web moderno (Chrome, Firefox, Edge).</li>
+  <li>Conexión a Internet (solo para la actualización de precios vía CoinGecko; el resto del sistema funciona sin conexión).</li>
+</ul>
+<p>No necesitas:</p>
+<ul>
+  <li>Cuenta de usuario ni registro.</li>
+  <li>Servicios en la nube ni bases de datos remotas.</li>
+  <li>Conocimientos de programación.</li>
+  <li>Instalar bases de datos externas (MySQL, PostgreSQL, etc.).</li>
+</ul>
+
+<hr>
+
+<h2 id="s2">2. Primer Despegue — Arranque Inicial</h2>
+
+<h3>2.1 Iniciar el sistema</h3>
+<p>Abre una terminal en el directorio del proyecto y ejecuta:</p>
+<pre><code>npm run dev</code></pre>
+<p>Este comando hace dos cosas simultáneamente:</p>
+<ol>
+  <li><strong>Inicia el backend bridge</strong> (servidor Express en <code>127.0.0.1:5000</code>).
+    <ul>
+      <li>Lee y escribe las 22 bases de datos JSON en el directorio <code>.obsidian/mikoko-moster/</code>.</li>
+      <li>Sirve una API REST para que el frontend pueda acceder a los datos.</li>
+      <li>Si es la primera ejecución, <strong>crea automáticamente</strong> las 22 bases de datos con su estructura de envelope inicial.</li>
+    </ul>
+  </li>
+  <li><strong>Inicia el frontend</strong> (servidor de desarrollo Vite + React en <code>127.0.0.1:3001</code>).
+    <ul>
+      <li>Compila la interfaz de usuario.</li>
+      <li>La abre en tu navegador predeterminado o puedes acceder manualmente.</li>
+    </ul>
+  </li>
+</ol>
+<p>Verás en la terminal una salida similar a:</p>
+<pre><code>MIKOKO v27.0 local bridge listening at http://127.0.0.1:5000
+Local storage: /home/tu-usuario/mikoko-moster/.obsidian/mikoko-moster
+Bridge session: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+
+  VITE v6.0.7  ready in 234 ms
+  ➜  Local:   http://localhost:3001/</code></pre>
+
+<h3>2.2 Acceder a la interfaz</h3>
+<p>Abre tu navegador y ve a:</p>
+<pre><code>http://localhost:3001</code></pre>
+<p><strong>IMPORTANTE:</strong> Debes usar <code>localhost</code>, no <code>127.0.0.1</code>. El backend solo acepta solicitudes CORS desde <code>http://localhost:3001</code>. Si accedes desde <code>http://127.0.0.1:3001</code>, verás un error de CORS.</p>
+
+<h3>2.3 La primera vez que entras</h3>
+<p>Al cargar la interfaz por primera vez, verás una <strong>pantalla de carga</strong> con un icono de Activity animado en cian y el mensaje:</p>
+<blockquote>Cargando bases de datos locales</blockquote>
+<p>Esto es normal. El frontend está solicitando las 22 bases de datos al backend. En cuanto las recibe, las procesa y muestra el Dashboard.</p>
+<p>Si no hay datos previos (primera ejecución), las bases de datos están en <strong>estado semilla</strong>:</p>
+<ul>
+  <li><strong>bd0</strong> contiene un registro único (el nodo soberano "SISTEMA MIKOKO") con todos los valores en cero.</li>
+  <li><strong>bd1</strong> está vacía (sin lotes de cartera).</li>
+  <li><strong>bd2</strong> está vacía (sin transacciones), pero ya tiene definida su taxonomía de categorías y subtipos.</li>
+  <li><strong>bd3</strong> está vacía (sin activos registrados).</li>
+  <li><strong>bd4 a bd21</strong> están vacías.</li>
+</ul>
+<p>Como no hay datos, el checksum mostrará <strong>BLOCKED</strong> (todos los ejes en rojo) porque el sistema detecta que no hay lotes en bd1, no hay auditoría, la pirámide está vacía, etc. Es el estado esperado. El sistema te está diciendo: "no hay datos, no puedo validar nada". Tu primera tarea será poblarlo.</p>
+
+<h3>2.4 Detener el sistema</h3>
+<p>Para detener MIKOKO, vuelve a la terminal donde ejecutaste <code>npm run dev</code> y presiona <strong>Ctrl + C</strong> dos veces, o una vez y espera a que los procesos terminen.</p>
+<p>Si la terminal se cerró y los procesos quedaron huérfanos, puedes matarlos manualmente:</p>
+<pre><code>kill $(lsof -ti :5000) $(lsof -ti :3001) 2>/dev/null</code></pre>
+
+<h3>2.5 Resumen: ciclo de vida de una sesión</h3>
+<pre><code>Abrir terminal → npm run dev → Navegador en localhost:3001 → Operar → Ctrl+C → Fin</code></pre>
+<p>No hay cierre de sesión, login, ni estados que guardar. Los cambios se persisten en disco instantáneamente (en modo LIVE). Puedes cerrar el navegador cuando quieras y retomar donde lo dejaste.</p>
+
+<hr>
+
+<h2 id="s3">3. Puesta a Punto Inicial — Onboarding</h2>
+<p>Esta sección está diseñada para quienes ya tienen activos, posiciones abiertas y un historial de operaciones antes de empezar a usar MIKOKO. Si empiezas desde cero (sin cartera previa), puedes saltar a la <a href="#s4">Sección 4</a>.</p>
+
+<h3>3.1 El concepto del "Día Cero"</h3>
+<p>MIKOKO no puede rastrear tu historial pasado automáticamente. No hay forma de saber qué compraste, a qué precio, ni dónde están tus activos si no se lo dices.</p>
+<p>El <strong>Día Cero</strong> es la fecha que eliges como punto de partida. A partir de ese momento, cada operación que realices se registra en MIKOKO y el seguimiento es perfecto. Para los activos que ya poseías antes del Día Cero, harás un <strong>registro masivo único</strong> con tu mejor estimación de coste de adquisición.</p>
+<p><strong>Regla importante:</strong> No se busca precisión de arqueólogo. Se busca una <strong>Línea de Base funcional</strong>. Si no recuerdas el precio exacto al que compraste un activo hace dos años, usa una estimación razonable. Es mejor un dato aproximado pero presente que un cero absoluto.</p>
+
+<h3>3.2 Paso 1: Registrar tus activos existentes</h3>
+<ol>
+  <li>En el <strong>Dashboard</strong>, localiza el formulario <strong>"Nueva Transacción"</strong> (panel izquierdo de la sección inferior).</li>
+  <li>Rellena los campos:
+    <ul>
+      <li><strong>Nombre del activo:</strong> El nombre completo (ej: "Ethereum", "Bitcoin", "USDC").</li>
+      <li><strong>Ticker:</strong> El símbolo del activo en mayúsculas (ej: "ETH", "BTC", "USDC").</li>
+      <li><strong>Tipo:</strong> Selecciona "Comprar" (es una entrada de capital, aunque sea histórica).</li>
+      <li><strong>Cantidad:</strong> La cantidad total que posees de ese activo.</li>
+      <li><strong>Precio unitario USD:</strong> Tu mejor estimación del precio al que lo adquiriste.</li>
+      <li><strong>Fecha/Hora:</strong> La fecha de tu <strong>Día Cero</strong> (o la fecha real si la recuerdas).</li>
+    </ul>
+  </li>
+  <li>Haz clic en <strong>"Confirmar Transacción Local"</strong> (modo LIVE) o <strong>"[SIM] Simular Transacción"</strong> (modo simulación si solo quieres probar).</li>
+</ol>
+<p><strong>¿Qué ocurre al confirmar?</strong></p>
+<ul>
+  <li>El activo se crea en <strong>bd3 (Activos Cripto)</strong> con estado de tesis <strong>"PENDIENTE"</strong>.</li>
+  <li>La transacción se registra en <strong>bd2 (Transacciones)</strong> con todos sus detalles.</li>
+  <li>Como el activo tiene tesis "PENDIENTE", entran en juego las <strong>reglas de Strict Block</strong> (ver sección 5): el activo <strong>no modifica</strong> la cartera (bd1) ni los totales consolidados (bd0). Queda en un estado de "cuarentena".</li>
+  <li>El sistema muestra un aviso: <em>"Strict Block activo: activo borrador y transacción pendiente guardados; el capital BD1 no fue mutado."</em></li>
+</ul>
+<p><strong>¿Por qué ocurre esto?</strong> MIKOKO no sabe si confiar en ese activo. Para que un activo afecte a tu capital real, debe tener la tesis <strong>APROBADA</strong>. Esto evita que registres activos basura o especulativos sin pasar por un proceso de validación.</p>
+
+<h3>3.3 Paso 2: Aprobar la tesis de tus activos</h3>
+<p>Para que los activos que registraste entren en el cómputo de tu cartera:</p>
+<ol>
+  <li>Ve a la <strong>Consola de Datos</strong> (icono de base de datos en la barra lateral, el último).</li>
+  <li>En el selector de base de datos, elige <strong>bd3 — Activos Cripto</strong>.</li>
+  <li>Localiza el registro del activo que quieres aprobar.</li>
+  <li>Usa el formulario de alta para <strong>modificar</strong> su estado (o edita directamente el JSON si usas "Ver raw"). Cambia <code>estadoTesis</code> de <code>"PENDIENTE"</code> a <code>"APROBADA"</code>.</li>
+  <li>Tras aprobar, el sistema recalcula: el activo pasa a formar parte de bd1 (Portfolio Actual) y el nodo soberano bd0 se actualiza con los nuevos totales.</li>
+</ol>
+<p><strong>Atajo:</strong> También puedes usar el workflow <strong>WF-001: Registrar Activo</strong> desde el Launchpad, que tiene un flujo más guiado, o modificar directamente el archivo JSON en la Consola de Datos.</p>
+
+<h3>3.4 Paso 3: Registrar tu primer movimiento real</h3>
+<p>Una vez que tus activos históricos están registrados y aprobados, cada operación nueva que realices (compra, venta, transferencia) deberás registrarla inmediatamente en MIKOKO usando el formulario de <strong>Nueva Transacción</strong> en el Dashboard (o el workflow <strong>WF-002</strong>).</p>
+<p>La regla es simple: <strong>toda operación on-chain debe tener su reflejo en MIKOKO en menos de 5 minutos.</strong> Cada transacción no registrada es un "agujero" en la memoria del sistema que distorsionará tus métricas.</p>
+
+<hr>
+
+<h2 id="s4">4. Tour Completo del HUD — Cada Rincón del Búnker</h2>
+<p>La interfaz de MIKOKO se divide en tres zonas permanentes (barra lateral, barra superior, área de contenido) y seis vistas intercambiables.</p>
+
+<h3>4.1 Barra Lateral (Panel de Navegación)</h3>
+<p>La barra lateral izquierda es tu panel de navegación principal. Está siempre visible.</p>
+<h4>Colapsar / Expandir</h4>
+<p>En el extremo superior hay dos botones:</p>
+<ul>
+  <li><strong><code>&lt;</code> (ChevronLeft):</strong> Cuando la barra está expandida, la colapsa. Solo muestra los iconos de cada sección.</li>
+  <li><strong><code>&gt;</code> (ChevronRight):</strong> Cuando la barra está colapsada, la expande. Muestra los iconos con sus etiquetas.</li>
+</ul>
+<p>Esto es útil en pantallas pequeñas o cuando quieres maximizar el área de contenido.</p>
+
+<h4>Los 6 nodos de navegación</h4>
+<table>
+  <tr><th>Icono</th><th>Vista</th><th>Color</th><th>¿Para qué sirve?</th></tr>
+  <tr><td>📊 LayoutDashboard</td><td>Dashboard</td><td>Verde esmeralda</td><td>Panel principal. Visión general del estado de tu arsenal.</td></tr>
+  <tr><td>🔀 GitPullRequest</td><td>Workflows</td><td>Cian</td><td>Launchpad de protocolos de misión. Desde aquí ejecutas acciones.</td></tr>
+  <tr><td>🧠 BrainCircuit</td><td>Inteligencia</td><td>Dorado</td><td>Feed de notas, análisis, diario e investigación.</td></tr>
+  <tr><td>📈 BarChart3</td><td>Análisis</td><td>Azul</td><td>Calculadora de asignación y rebalanceo.</td></tr>
+  <tr><td>🔺 Triangle</td><td>Pirámide</td><td>Violeta</td><td>Visualización de la estructura de capital por niveles de riesgo.</td></tr>
+  <tr><td>🗄️ Database</td><td>Consola BD</td><td>Rojo carmesí</td><td>Administración directa de las 22 bases de datos.</td></tr>
+</table>
+
+<h4>Indicador de estado al pie</h4>
+<p>En la parte inferior de la barra lateral hay un <strong>indicador luminoso</strong> que muestra el veredicto actual del checksum:</p>
+<ul>
+  <li><strong>Verde</strong> → SISTEMA AUTORIZADO (todo correcto, puedes operar).</li>
+  <li><strong>Ámbar</strong> → PRECAUCIÓN (algo requiere atención pero no bloquea).</li>
+  <li><strong>Rojo</strong> → BLOQUEADO (uno o más ejes bloqueantes impiden operar).</li>
+</ul>
+<p>Cuando la barra está colapsada, solo se ve el punto de color. Cuando está expandida, también se ve el texto del veredicto.</p>
+
+<h3>4.2 Barra Superior (Top Bar)</h3>
+<p>La barra superior contiene elementos que se mantienen visibles sin importar la vista activa.</p>
+<h4>Indicador de protocolo</h4>
+<p>A la izquierda: un icono de <strong>Radio</strong> (señal) en rojo seguido del texto:</p>
+<pre><code>MIKOKO v27.0 // SECURE PROTOCOL</code></pre>
+<p>Esto confirma visualmente que estás en el sistema y que opera en modo seguro (localhost-only). La versión (27.0) coincide con el archivo <code>package.json</code>.</p>
+
+<h4>Badge de Checksum</h4>
+<p>A la derecha del indicador de protocolo, un recuadro con el veredicto actual:</p>
+<ul>
+  <li><strong>AUTHORIZED</strong> (texto verde) → Todo en orden.</li>
+  <li><strong>CAUTION</strong> (texto ámbar) → Revisa los ejes marcados.</li>
+  <li><strong>BLOCKED</strong> (texto rojo) → Operaciones restringidas.</li>
+</ul>
+
+<h4>Toggle SIMULACIÓN / LIVE</h4>
+<p>A la derecha del badge, un botón que alterna entre dos modos operativos:</p>
+<ul>
+  <li><strong>Modo LIVE</strong> (apariencia roja/carmesí): Las operaciones escriben directamente en los archivos JSON del disco. Cada transacción, actualización de precio o modificación de datos persiste al cerrar el navegador.</li>
+  <li><strong>Modo SIMULACIÓN</strong> (apariencia naranja/dorada): Las operaciones se ejecutan exclusivamente en memoria (estado React). Los cambios se ven en la interfaz, pero <strong>no se persisten</strong> en disco. Al recargar la página, todo vuelve al estado original.</li>
+</ul>
+<p><strong>Cómo alternar:</strong> Haz clic en el botón. Cambia de modo instantáneamente. No hay confirmación ni advertencia.</p>
+<p><strong>¿Cuándo usar cada modo?</strong></p>
+<ul>
+  <li>Usa <strong>SIMULACIÓN</strong> cuando quieras probar un escenario hipotético: "¿qué pasaría si comprara 1 BTC ahora?", "¿cómo se vería mi cartera si rebalanceo al 40% en Tier 1?".</li>
+  <li>Usa <strong>LIVE</strong> cuando estés registrando operaciones reales que quieres que se guarden permanentemente.</li>
+</ul>
+<p><strong>IMPORTANTE:</strong> El estado del toggle <strong>se reinicia al recargar la página</strong>. Si recargas, el sistema vuelve a LIVE. Esto es intencional: la simulación debe ser una decisión consciente cada sesión.</p>
+
+<h3>4.3 Dashboard (Vista Principal / HUD)</h3>
+<p>La vista Dashboard es la primera que ves al entrar. Es tu <strong>panel de control central</strong>.</p>
+
+<h4>4.3.1 Encabezado del Dashboard</h4>
+<p>En la parte superior, dentro de un panel con bordes y sombra tenue:</p>
+<ul>
+  <li><strong>"MIKOKO v27.0"</strong> en texto dorado pequeño.</li>
+  <li><strong>"Panel de Cartera Soberana"</strong> como título.</li>
+  <li>Cuatro indicadores en fila:
+    <ul>
+      <li><strong>Checksum:</strong> Muestra el veredicto actual con su color.</li>
+      <li><strong>Modo:</strong> Muestra "SIMULACIÓN" (naranja) o "Usuario Único" (cian, modo LIVE).</li>
+      <li><strong>Almacenamiento:</strong> Muestra la ruta <code>".obsidian/mikoko-moster"</code>.</li>
+      <li><strong>Botón "Actualizar Precios":</strong> Dispara la actualización de precios vía CoinGecko (o simulación).</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>4.3.2 Los 4 Estados Visibles del Dashboard</h4>
+<p><strong>Estado 1 — Carga (loading):</strong> Pantalla centrada con icono Activity animado y mensaje "Cargando bases de datos locales".</p>
+<p><strong>Estado 2 — Error:</strong> Banda roja en la parte superior del dashboard con el mensaje de error.</p>
+<p><strong>Estado 3 — Aviso (notice):</strong> Banda verde con mensaje confirmando el resultado de una acción exitosa.</p>
+<p><strong>Estado 4 — Normal (con datos o vacío):</strong> El dashboard muestra sus paneles con datos. Si no hay activos, la tabla muestra un mensaje indicándolo.</p>
+
+<h4>4.3.3 Las 4 Tarjetas Métricas (Patrimonio Neto)</h4>
+<table>
+  <tr><th>Tarjeta</th><th>Descripción</th><th>Color de borde</th></tr>
+  <tr><td><strong>Patrimonio Neto</strong></td><td>Valor total consolidado de tu cartera en USD.</td><td>Esmeralda</td></tr>
+  <tr><td><strong>Cambio Cartera 24h</strong></td><td>Variación del valor en las últimas 24 horas. <strong>Actualmente muestra "Snapshot pendiente"</strong> (funcionalidad en desarrollo).</td><td>Cian</td></tr>
+  <tr><td><strong>Polvo Seco</strong></td><td>Capital líquido disponible en stablecoins. Muestra valor USD y porcentaje de liquidez.</td><td>Dorado</td></tr>
+  <tr><td><strong>Precios Obsoletos</strong></td><td>Número de activos con precio SSOT con más de 24h sin actualizar.</td><td>Carmesí</td></tr>
+</table>
+
+<h4>4.3.4 Matriz de Integridad del Sistema (6 Ejes)</h4>
+<p>Muestra el estado de los 6 ejes del checksum. Cada eje se representa como una tarjeta con código, nombre, indicador luminoso y mensaje de acción.</p>
+
+<h4>4.3.5 Distribución de Asignación (Barras de Progreso)</h4>
+<p>Panel con 4 barras de progreso apiladas verticalmente, una por cada nivel de riesgo (Tier), mostrando nombre, valor USD, porcentaje y barra horizontal.</p>
+
+<h4>4.3.6 Formulario de Nueva Transacción</h4>
+<p>Panel izquierdo de la tercera fila. Contiene 6 campos y un botón de confirmación.</p>
+<table>
+  <tr><th>Campo</th><th>Tipo</th><th>Obligatorio</th><th>Descripción</th></tr>
+  <tr><td>Nombre del activo</td><td>Texto</td><td>No</td><td>Nombre legible del activo</td></tr>
+  <tr><td>Ticker</td><td>Texto</td><td><strong>Sí</strong></td><td>Símbolo del activo en mayúsculas</td></tr>
+  <tr><td>Tipo</td><td>Select</td><td><strong>Sí</strong></td><td>"Comprar", "Vender" o "Transferir"</td></tr>
+  <tr><td>Cantidad</td><td>Número</td><td><strong>Sí</strong></td><td>Debe ser mayor que cero</td></tr>
+  <tr><td>Precio unitario USD</td><td>Número</td><td><strong>Sí</strong></td><td>Puede ser cero (airdrops o rewards)</td></tr>
+  <tr><td>Fecha/Hora</td><td>datetime-local</td><td><strong>Sí</strong></td><td>Por defecto se rellena con la actual</td></tr>
+</table>
+
+<h4>4.3.7 Tabla de Activos (BD3)</h4>
+<p>Muestra todos los activos registrados en bd3 con información consolidada de bd1. Columnas: Activo, Cantidad, Precio, Valor, Actualización, Tesis.</p>
+
+<h3>4.4 Launchpad de Workflows (Panel de Control)</h3>
+<p>Contiene 6 tarjetas de workflow, cada una representando un protocolo de misión con ID, nombre, descripción, icono y botones "Ejecutar" e "Info".</p>
+<table>
+  <tr><th>ID</th><th>Nombre</th><th>Acción al ejecutar</th></tr>
+  <tr><td>WF-001</td><td>Registrar Activo</td><td>Crear nuevo pasaporte de activo en BD3</td></tr>
+  <tr><td>WF-002</td><td>Nueva Transacción</td><td>Registrar compra/venta/transferencia en BD2</td></tr>
+  <tr><td>WF-010</td><td>Rebalanceo de Cartera</td><td>Ejecutar rebalanceo entre niveles de riesgo</td></tr>
+  <tr><td>WF-020</td><td>Reconciliación Contable</td><td>Conciliar saldos BD1 contra BD0</td></tr>
+  <tr><td>WF-030</td><td>Actualizar Precios</td><td>Refrescar precios de mercado vía CoinGecko</td></tr>
+  <tr><td>WF-099</td><td>Inicializar Bases de Datos</td><td>Recargar todas las BD desde el servidor</td></tr>
+</table>
+
+<h3>4.5 Feed de Inteligencia (Centro de Análisis)</h3>
+<p>Agrega contenido de 4 bases de datos (bd8, bd14, bd16, bd17) en un feed cronológico descendente. Cada tarjeta muestra icono, título, badge de origen, extracto y fecha.</p>
+
+<h3>4.6 Estación de Análisis (Calculadora de Rebalanceo)</h3>
+<p>Panel izquierdo muestra desglose del capital por Tier. Panel derecho incluye 4 sliders (1-80%) para ajustar porcentajes objetivo y genera un Plan de Acción comparando asignación actual vs. objetivo.</p>
+
+<h3>4.7 Panel de la Pirámide (Estructura de Capital)</h3>
+<p>Representación geométrica conceptual de 4 niveles visuales apilados (Reserva, Rendimiento, Alpha, Especulación), panel de salud con 3 indicadores y diagnóstico del EJE-P.</p>
+
+<h3>4.8 Consola de Datos (Administración de Bases de Datos)</h3>
+<p>Selector de las 22 bases de datos, formulario para agregar registros JSON, tabla de registros con columnas dinámicas, botón "Ver raw" para inspeccionar el JSON completo, y contador de registros.</p>
+
+<hr>
+
+<h2 id="s5">5. Workflows — Protocolos de Despliegue</h2>
+
+<h3>5.1 WF-001: Registrar Activo</h3>
+<p><strong>Objetivo:</strong> Crear un nuevo pasaporte de activo en BD3.</p>
+<p><strong>Cuándo usarlo:</strong> Cada vez que adquieras un activo que aún no existe en tu catálogo de BD3.</p>
+<p><strong>Cómo ejecutarlo:</strong> Launchpad → WF-001 → "Ejecutar" → Dashboard → formulario → confirmar. El activo se crea con tesis "PENDIENTE". Para que entre en el cómputo, cambiar tesis a "APROBADA" desde Consola de Datos.</p>
+<p><strong>El Razonamiento:</strong> Un activo con tesis "PENDIENTE" está en cuarentena. No afecta a tu capital consolidado hasta que decidas aprobarlo conscientemente.</p>
+
+<h3>5.2 WF-002: Nueva Transacción</h3>
+<p><strong>Objetivo:</strong> Registrar una compra, venta o transferencia en BD2 y actualizar BD1 y BD0.</p>
+<p><strong>Cuándo usarlo:</strong> Inmediatamente después de cualquier operación real.</p>
+<p><strong>Secuencia interna (4 escrituras en disco):</strong> BD3 → BD2 → BD1 → BD0. Incluye creación de hash de integridad, asignación de categoría fiscal, Strict Block si la tesis no es APROBADA, y sincronización del nodo soberano.</p>
+
+<h3>5.3 WF-010: Rebalanceo de Cartera</h3>
+<p><strong>Objetivo:</strong> Alinear la asignación real con la asignación objetivo de la Pirámide Estratégica.</p>
+<p><strong>Cómo ejecutarlo:</strong> Estación de Análisis → ajustar sliders → revisar Plan de Acción → ejecutar operaciones reales → registrar con WF-002 → verificar en Dashboard.</p>
+
+<h3>5.4 WF-020: Reconciliación Contable</h3>
+<p><strong>Objetivo:</strong> Conciliar BD1 contra BD0 para verificar que no hay discrepancias.</p>
+<p><strong>Frecuencia:</strong> Cada 14 días como mínimo.</p>
+
+<h3>5.5 WF-030: Actualizar Precios</h3>
+<p><strong>Objetivo:</strong> Refrescar precios de mercado vía CoinGecko.</p>
+<p><strong>Frecuencia:</strong> A diario. En modo LIVE llama a CoinGecko; en SIMULACIÓN aplica variación aleatoria ±1%.</p>
+
+<h3>5.6 WF-099: Inicializar Bases de Datos</h3>
+<p><strong>Objetivo:</strong> Recargar las 22 bases de datos desde el servidor.</p>
+<p><strong>Cuándo usarlo:</strong> Datos inconsistentes, sospecha de desincronización, después de restaurar backup.</p>
+
+<hr>
+
+<h2 id="s6">6. Modo Simulación (Cuarto de Juegos de Guerra) vs. LIVE (Terreno Real)</h2>
+
+<h3>6.1 El interruptor de modo</h3>
+<p>Toggle en la barra superior. Se reinicia al recargar la página.</p>
+<table>
+  <tr><th>Modo</th><th>Color del toggle</th><th>¿Se persisten los cambios?</th><th>¿Llamadas al backend?</th></tr>
+  <tr><td><strong>LIVE</strong></td><td>Rojo/Carmesí</td><td>Sí, se escriben en disco</td><td>Sí, POST reales a Express</td></tr>
+  <tr><td><strong>SIMULACIÓN</strong></td><td>Naranja/Dorado</td><td>No, solo en memoria</td><td>No, se interceptan</td></tr>
+</table>
+
+<h3>6.2 Comportamiento en SIMULACIÓN</h3>
+<p><strong>addTransaction:</strong> Lógica completa en memoria, llamadas a <code>postDb</code> interceptadas, cambios visibles en interfaz pero disco intacto.</p>
+<p><strong>refreshMarketPrices:</strong> No llama a CoinGecko; variación aleatoria ±1%.</p>
+<p><strong>Consola de Datos:</strong> Botón "Agregar" deshabilitado.</p>
+
+<h3>6.3 Comportamiento en LIVE</h3>
+<p>Cada transacción ejecuta 4 POST secuenciales con validación de payload en el servidor. Backend implementa escritura atómica.</p>
+<p><strong>refreshMarketPrices:</strong> POST a <code>/api/market/prices</code>, busca IDs de CoinGecko, solo transmite identificadores de activos.</p>
+
+<h3>6.4 Reglas de validación en modo LIVE</h3>
+<ol>
+  <li>Validación de campos (ticker, cantidad, precio).</li>
+  <li>Búsqueda en BD3; si no existe, pasaporte borrador con tesis "PENDIENTE".</li>
+  <li>Evaluación de tesis: APROBADA → modifica BD1; no APROBADA → Strict Block.</li>
+  <li>Sincronización de BD0.</li>
+</ol>
+
+<hr>
+
+<h2 id="s7">7. El Checksum — El Sistema de Soporte Vital (6 Ejes)</h2>
+<p>El checksum es el <strong>sistema de diagnóstico continuo</strong> de MIKOKO. Se calcula del lado del frontend cada vez que los datos cambian.</p>
+
+<h3>7.2 Los 6 ejes</h3>
+
+<h4>EJE-1: Contabilidad</h4>
+<p><strong>Rojo si:</strong> BD1 sin lotes activos, total ≤ 0, polvo seco > total, o lotes huérfanos.<br>
+<strong>Impacto:</strong> <strong>BLOQUEANTE</strong> — No se pueden ejecutar transacciones.</p>
+
+<h4>EJE-2: Precios</h4>
+<p><strong>Rojo si:</strong> Uno o más activos con capital tienen precio obsoleto (&gt;24h).<br>
+<strong>Impacto:</strong> <strong>BLOQUEANTE</strong> — No se pueden ejecutar transacciones.<br>
+<strong>Solución:</strong> Ejecutar WF-030.</p>
+
+<h4>EJE-3: Auditoría</h4>
+<p><strong>Rojo si:</strong> Nunca auditado o última auditoría &gt; 30 días.<br>
+<strong>Amarillo si:</strong> Auditoría entre 14 y 30 días.<br>
+<strong>Impacto:</strong> <strong>BLOQUEANTE</strong> en rojo.</p>
+
+<h4>EJE-4: Psicología</h4>
+<p><strong>Naranja si:</strong> <code>operatorScore &gt; 7</code>. <strong>Amarillo si:</strong> <code>operatorScore &gt; 9</code>.<br>
+<strong>Impacto:</strong> <strong>NO bloqueante</strong> — Informativo.</p>
+
+<h4>EJE-P: Pirámide (Piramidal)</h4>
+<p><strong>Rojo si:</strong> Tier 1 vacío, o Tier 3+4 &gt; Tier 1 (pirámide invertida).<br>
+<strong>Amarillo si:</strong> Tier 3+4 &gt; 30% del total.<br>
+<strong>Impacto:</strong> <strong>BLOQUEANTE</strong> en rojo.</p>
+
+<h4>EJE-L: Liquidez</h4>
+<p><strong>Rojo si:</strong> <code>polvoSeco / total &lt; 10%</code>.<br>
+<strong>Amarillo si:</strong> <code>polvoSeco / total &lt; 20%</code>.<br>
+<strong>Impacto:</strong> <strong>BLOQUEANTE</strong> en rojo.</p>
+
+<h3>7.3 Veredictos</h3>
+<table>
+  <tr><th>Veredicto</th><th>Significado</th><th>Acción recomendada</th></tr>
+  <tr><td><strong>AUTHORIZED</strong></td><td>Todos los ejes en verde</td><td>Operar con normalidad</td></tr>
+  <tr><td><strong>CAUTION</strong></td><td>Ejes en amarillo/naranja, ninguno bloqueante</td><td>Revisar y programar correcciones</td></tr>
+  <tr><td><strong>BLOCKED</strong></td><td>Uno o más ejes bloqueantes en rojo</td><td>Resolver ejes rojos antes de operar</td></tr>
+</table>
+
+<hr>
+
+<h2 id="s8">8. La Pirámide Estratégica — Doctrina de Asignación de Capital</h2>
+
+<h3>8.1 El principio del Riesgo Dinámico</h3>
+<p>El riesgo de un activo depende de dónde está desplegado, no solo del activo en sí. Un mismo activo (ETH) puede tener lotes en diferentes Tiers simultáneamente.</p>
+
+<h3>8.2 Los 4 niveles (Tiers)</h3>
+<table>
+  <tr><th>Tier</th><th>Nombre</th><th>Función</th><th>% Objetivo recomendado</th></tr>
+  <tr><td><strong>Tier 1</strong></td><td>Reserva</td><td>Defensa y combustible. Capital que no debe perderse.</td><td>25-40%</td></tr>
+  <tr><td><strong>Tier 2</strong></td><td>Rendimiento</td><td>Generación de yield sobre capital estable.</td><td>20-30%</td></tr>
+  <tr><td><strong>Tier 3</strong></td><td>Alpha</td><td>Crecimiento controlado. Grandes capitalizaciones.</td><td>15-25%</td></tr>
+  <tr><td><strong>Tier 4</strong></td><td>Especulación</td><td>Ataques tácticos de alta recompensa.</td><td>5-15%</td></tr>
+</table>
+
+<h3>8.3 Contabilidad de Sobres</h3>
+<p>La liquidez se clasifica en sobres mediante la propiedad <code>liquidityLabel</code>: Polvo Seco (<code>OPEN_ENVELOPE</code>), Reserva de Beneficios, En Estrategia (<code>NO_LIQUIDITY</code>), No Gastable.</p>
+
+<h3>8.4 Guardarraíles (Guardrails)</h3>
+<table>
+  <tr><th>Regla</th><th>Límite</th><th>Consecuencia</th></tr>
+  <tr><td>Tier 1 nunca debe caer a cero</td><td>Tier 1 &gt; 0</td><td>EJE-P rojo (bloqueante)</td></tr>
+  <tr><td>Alto riesgo (T3+T4) ≤ Tier 1</td><td>T3+T4 ≤ T1</td><td>EJE-P rojo (bloqueante)</td></tr>
+  <tr><td>Alto riesgo ≤ 30% del total</td><td>(T3+T4)/Total ≤ 30%</td><td>EJE-P amarillo</td></tr>
+  <tr><td>Polvo seco ≥ 10%</td><td>Liquidez ≥ 10%</td><td>EJE-L rojo (bloqueante)</td></tr>
+  <tr><td>Polvo seco ≥ 20% (alerta temprana)</td><td>Liquidez ≥ 20%</td><td>EJE-L amarillo</td></tr>
+</table>
+
+<hr>
+
+<h2 id="s9">9. Arquitectura del Sistema — Los Cimientos del Búnker</h2>
+
+<h3>9.1 Paradigma operacional</h3>
+<table>
+  <tr><th>Componente</th><th>Puerto</th><th>Tecnología</th><th>Rol</th></tr>
+  <tr><td><strong>Backend Bridge</strong></td><td><code>127.0.0.1:5000</code></td><td>Express.js (Node)</td><td>API REST, persistencia JSON, CoinGecko</td></tr>
+  <tr><td><strong>Frontend HUD</strong></td><td><code>127.0.0.1:3001</code></td><td>Vite + React 18 + Tailwind CSS</td><td>Interfaz de usuario, checksum, visualización</td></tr>
+</table>
+
+<h3>9.2 El backend bridge (Express)</h3>
+<p>Endpoints: <code>GET /api/health</code>, <code>GET /api/db</code>, <code>GET /api/db/:name</code>, <code>POST /api/db/:name</code>, <code>POST /api/market/prices</code>. Sin autenticación, CORS estricto.</p>
+
+<h3>9.3 Las 22 bases de datos</h3>
+<p>Todos los datos residen en <code>.obsidian/mikoko-moster/</code> con un esquema de envelope uniforme.</p>
+
+<table>
+  <tr><th>BD</th><th>Módulo</th><th>Propósito</th></tr>
+  <tr><td>bd0</td><td>Central de Datos</td><td>Nodo soberano, totales consolidados</td></tr>
+  <tr><td>bd1</td><td>Portfolio Actual</td><td>Lotes activos de la cartera</td></tr>
+  <tr><td>bd2</td><td>Transacciones</td><td>Libro mayor inmutable</td></tr>
+  <tr><td>bd3</td><td>Activos Cripto</td><td>Pasaportes de activos</td></tr>
+  <tr><td>bd4</td><td>Parametros Piramide</td><td>Configuración de estructura piramidal</td></tr>
+  <tr><td>bd5</td><td>Estrategias DeFi</td><td>Yield farming, staking, LPs</td></tr>
+  <tr><td>bd6</td><td>Tareas y Alertas</td><td>Notificaciones y tareas pendientes</td></tr>
+  <tr><td>bd7</td><td>Proyectos y Protocolos</td><td>Fichas técnicas de proyectos</td></tr>
+  <tr><td>bd8</td><td>Notas y Analisis</td><td>Investigación y análisis</td></tr>
+  <tr><td>bd9</td><td>Campanas Airdrop</td><td>Seguimiento de airdrops</td></tr>
+  <tr><td>bd10</td><td>Glosario Cripto</td><td>Diccionario de términos</td></tr>
+  <tr><td>bd11</td><td>Ubicaciones</td><td>Exchanges, wallets, direcciones</td></tr>
+  <tr><td>bd12</td><td>Posiciones Activas</td><td>Posiciones abiertas con P&amp;L</td></tr>
+  <tr><td>bd13</td><td>NFTs</td><td>Catálogo de NFTs</td></tr>
+  <tr><td>bd14</td><td>Diario Cripto</td><td>Registro cronológico y decisiones</td></tr>
+  <tr><td>bd15</td><td>Estado del Operador</td><td>Puntuación psicológica (1-10)</td></tr>
+  <tr><td>bd16</td><td>Pitacoras Inbox</td><td>Bandeja de entrada</td></tr>
+  <tr><td>bd17</td><td>Prensa y Research</td><td>Artículos e informes externos</td></tr>
+  <tr><td>bd18</td><td>Herramientas</td><td>Calculadoras y dashboards externos</td></tr>
+  <tr><td>bd19</td><td>Contactos</td><td>Red de contactos del ecosistema</td></tr>
+  <tr><td>bd20</td><td>Reconciliaciones</td><td>Historial de conciliaciones</td></tr>
+  <tr><td>bd21</td><td>Snapshots Contables</td><td>Instantáneas periódicas contables</td></tr>
+</table>
+
+<h3>9.4 Single Source of Truth (SSOT)</h3>
+<p>bd3 → precios. bd2 → libro mayor. bd1 → derivado de bd2+bd3. bd0 → rollup de bd1.</p>
+
+<h3>9.5 Escritura atómica</h3>
+<p>El backend escribe primero en archivo <code>.tmp</code>, hace <code>fsync()</code>, y renombra sobre el original. Crea backup <code>.bak</code> antes de cada escritura. Las escrituras simultáneas se encolan.</p>
+
+<h3>9.6 Tecnologías utilizadas</h3>
+<table>
+  <tr><th>Tecnología</th><th>Versión</th><th>Uso</th></tr>
+  <tr><td>Node.js</td><td>≥ 18</td><td>Entorno de ejecución</td></tr>
+  <tr><td>Express</td><td>4.21.x</td><td>Framework HTTP</td></tr>
+  <tr><td>React</td><td>18.3.x</td><td>Interfaz de usuario</td></tr>
+  <tr><td>Vite</td><td>6.x</td><td>Bundler y servidor de desarrollo</td></tr>
+  <tr><td>Tailwind CSS</td><td>3.4.x</td><td>Estilos</td></tr>
+  <tr><td>Lucide React</td><td>0.468.x</td><td>Iconos</td></tr>
+  <tr><td>Concurrently</td><td>9.x</td><td>Procesos paralelos</td></tr>
+  <tr><td>CoinGecko API</td><td>v3</td><td>Precios de mercado</td></tr>
+</table>
+
+<hr>
+
+<h2 id="s10">10. Respaldos y Seguridad — Protocolo de Supervivencia</h2>
+
+<h3>10.1 Principio de Soberanía</h3>
+<p>Todos los datos residen en <code>.obsidian/mikoko-moster/</code>. No hay backups automáticos. La integridad es responsabilidad del operador.</p>
+
+<h3>10.2 Procedimiento de Respaldo en Frío</h3>
+<p><strong>Frecuencia:</strong> Cada 7 días.</p>
+<p><strong>Pasos:</strong> Detener el sistema → verificar integridad JSON → copiar a USB → almacenar en custodia física ignífuga.</p>
+
+<h3>10.3 Procedimiento de Restauración</h3>
+<p>Detener sistema → hacer backup del estado corrupto → copiar respaldo → reiniciar.</p>
+
+<h3>10.4 Seguridad del Entorno</h3>
+<p>Aislamiento de red (127.0.0.1), CORS estricto, sin telemetría, sin autenticación remota, límite de payload 2MB.</p>
+
+<hr>
+
+<h2 id="s11">11. Solución de Problemas — Diagnóstico y Reparación</h2>
+
+<h3>11.1 Issue A: Puerto 3001 o 5000 Bloqueados</h3>
+<p><strong>Síntoma:</strong> <code>EADDRINUSE</code>. <strong>Solución:</strong> <code>kill $(lsof -ti :5000) $(lsof -ti :3001)</code>.</p>
+
+<h3>11.2 Issue B: CoinGecko API Offline o Rate-Limited</h3>
+<p><strong>Síntoma:</strong> Error al actualizar precios. <strong>Solución:</strong> Esperar 1-2 min (rate limit), usar modo SIMULACIÓN, o override manual editando BD3.</p>
+
+<h3>11.3 Issue C: Corrupción de Datos</h3>
+<p><strong>Síntoma:</strong> Error al cargar BD. <strong>Solución:</strong> Verificar JSON, restaurar desde <code>.bak</code>, restaurar desde respaldo en frío, o reconstruir desde semilla.</p>
+
+<h3>11.4 Issue D: Error de CORS</h3>
+<p><strong>Síntoma:</strong> "CORS origin not allowed". <strong>Solución:</strong> Usar <code>http://localhost:3001</code>, no <code>127.0.0.1</code>.</p>
+
+<h3>11.5 Issue E: Error de Icono Faltante</h3>
+<p><strong>Síntoma:</strong> Componente no exportado de lucide-react. <strong>Solución:</strong> Verificar versión, reemplazar icono.</p>
+
+<h3>11.6 Issue F: JSX en archivo .js</h3>
+<p><strong>Síntoma:</strong> Vite falla al parsear. <strong>Solución:</strong> Renombrar a <code>.jsx</code>.</p>
+
+<h3>11.7 Mantenimiento Preventivo</h3>
+<table>
+  <tr><th>Tarea</th><th>Frecuencia</th></tr>
+  <tr><td>Verificar integridad JSON</td><td>Semanal</td></tr>
+  <tr><td>Backup a USB</td><td>Semanal</td></tr>
+  <tr><td>Limpiar archivos .tmp</td><td>Diario</td></tr>
+  <tr><td>Verificar puertos libres</td><td>Al iniciar</td></tr>
+  <tr><td>Actualizar precios</td><td>Diario</td></tr>
+  <tr><td>Auditoría de cartera</td><td>Cada 14 días</td></tr>
+  <tr><td>Revisar checksum</td><td>Cada sesión</td></tr>
+</table>
+
+<hr>
+
+<h2 id="s12">12. Buenas Prácticas y Doctrina Operativa</h2>
+
+<h3>12.1 Las 5 Doctrinas del Comandante Disciplinado</h3>
+
+<h4>Doctrina nº1: El Dashboard es tu Único Punto de Entrada</h4>
+<p>Toda sesión debe comenzar y terminar en el Dashboard. Es tu ritual pre-vuelo. Mira el checksum primero.</p>
+
+<h4>Doctrina nº2: La Inmediatez del Registro</h4>
+<p>"Regla de los 2 Minutos": si registrar una transacción te lleva menos de 2 minutos, hazlo en el momento. No acumules deuda de datos.</p>
+
+<h4>Doctrina nº3: Zero tolerancia con los precios obsoletos</h4>
+<p>No operes si el EJE-2 está en rojo. Sin precios actualizados, todas las métricas derivadas son incorrectas.</p>
+
+<h4>Doctrina nº4: Registro honrado del estado psicológico</h4>
+<p>Registra tu estado mental (BD15) antes de cada sesión. El EJE-4 existe porque el peor enemigo del inversor es él mismo.</p>
+
+<h4>Doctrina nº5: Respeta la jerarquía de datos (SSOT)</h4>
+<p>No modifiques BD1 o BD0 manualmente. Siempre a través de BD3 o BD2. El sistema deriva los cambios automáticamente.</p>
+
+<h3>12.2 Consejos Pro</h3>
+<ol>
+  <li><strong>Usa el modo simulación como cuarto de guerra</strong> — Prueba escenarios antes de ejecutarlos.</li>
+  <li><strong>La tabla de activos como tu radar</strong> — Escanéala visualmente al empezar cada sesión.</li>
+  <li><strong>La reconciliación como tu seguro</strong> — WF-020 periódico te entrena para ser meticuloso.</li>
+  <li><strong>El glosario como tu referencia</strong> — Consulta el glosario para cualquier término del sistema.</li>
+</ol>
+
+<hr>
+
+<h2 id="s13">13. FAQ — Base de Conocimiento</h2>
+
+<h3>Primeros pasos y operaciones básicas</h3>
+<p><strong>P: ¿Cómo registro comisiones de gas?</strong><br>
+R: Para un swap, incluye el gas en el coste del activo que vendes. Para transferencia simple, transacción "Vender" con cantidad 0 y precio = gas.</p>
+
+<p><strong>P: ¿Cómo registro un Airdrop?</strong><br>
+R: Nueva Transacción, tipo "Comprar", ticker del activo, cantidad recibida, precio 0.</p>
+
+<p><strong>P: ¿Y las recompensas de Staking o Pool de Liquidez?</strong><br>
+R: Igual que un airdrop: "Comprar" con precio 0.</p>
+
+<p><strong>P: He movido fondos entre mis wallets. ¿Es compra/venta?</strong><br>
+R: No. Usa tipo "Transferir".</p>
+
+<p><strong>P: El valor de mi cartera no coincide con el exchange/wallet.</strong><br>
+R: Transacción no registrada. Revisa BD2 en Consola de Datos.</p>
+
+<p><strong>P: ¿Qué significa "Strict Block"?</strong><br>
+R: Mecanismo de seguridad: activo no aprobado no afecta BD1 ni BD0. Transacción se registra en BD2 pero capital no se mueve.</p>
+
+<p><strong>P: ¿Cómo convierto un activo de "PENDIENTE" a "APROBADA"?</strong><br>
+R: Consola de Datos → BD3 → modificar <code>estadoTesis</code> a <code>"APROBADA"</code>.</p>
+
+<h3>Sistema y personalización</h3>
+<p><strong>P: ¿Puedo cambiar los colores?</strong><br>
+R: Sí, editando <code>tailwind.config.js</code> sección <code>colors.mikoko</code>.</p>
+
+<p><strong>P: ¿Puedo agregar más bases de datos?</strong><br>
+R: Técnicamente sí, pero las 22 existentes cubren todos los dominios necesarios.</p>
+
+<p><strong>P: ¿Cómo exporto mis datos?</strong><br>
+R: No hay exportación integrada. Los datos están en JSON plano, puedes escribir un script conversor.</p>
+
+<p><strong>P: ¿Puedo usar MIKOKO desde otro dispositivo en mi red?</strong><br>
+R: No. Solo localhost. Es intencional por seguridad.</p>
+
+<h3>Pirámide y gestión de cartera</h3>
+<p><strong>P: ¿Qué pasa si un activo cambia de uso y riesgo?</strong><br>
+R: Registra Transferencia, luego modifica <code>finalTier</code> del lote en BD1.</p>
+
+<p><strong>P: ¿Qué hago si el EJE-P está rojo pero decido no rebalancear?</strong><br>
+R: El checksum es una guía, no una orden. Documenta tu razonamiento en BD14.</p>
+
+<p><strong>P: ¿Cada cuánto revisar los porcentajes objetivo?</strong><br>
+R: Revisión estratégica trimestral.</p>
+
+<hr>
+
+<h2 id="s14">14. Glosario de Términos MIKOKO</h2>
+
+<h3>A</h3>
+<p><strong>Arquitectura localhost-only:</strong> Filosofía de diseño. Todos los procesos en <code>127.0.0.1</code>.</p>
+<p><strong>Atomic write:</strong> Escritura atómica: archivo temporal → fsync → rename.</p>
+
+<h3>B</h3>
+<p><strong>Backend bridge:</strong> Servidor Express.js en puerto 5000.</p>
+<p><strong>BD0 a BD21:</strong> Las 22 bases de datos del sistema.</p>
+
+<h3>C</h3>
+<p><strong>Checksum:</strong> Sistema de diagnóstico de 6 ejes. Veredictos: AUTHORIZED, CAUTION, BLOCKED.</p>
+<p><strong>CoinGecko:</strong> API pública de precios.</p>
+<p><strong>Consola de Datos:</strong> Vista para inspeccionar y modificar BD.</p>
+<p><strong>CORS:</strong> Solo acepta solicitudes desde <code>http://localhost:3001</code>.</p>
+
+<h3>D</h3>
+<p><strong>Dashboard:</strong> Vista principal con métricas clave.</p>
+<p><strong>Día Cero:</strong> Fecha de partida para el registro histórico.</p>
+
+<h3>E</h3>
+<p><strong>EJE-1 a EJE-L:</strong> Los 6 ejes del checksum.</p>
+<p><strong>Envelope:</strong> Estructura uniforme de cada archivo JSON.</p>
+
+<h3>G</h3>
+<p><strong>Guardarraíles (Guardrails):</strong> Reglas no negociables monitorizadas por EJE-P y EJE-L.</p>
+
+<h3>H</h3>
+<p><strong>HUD:</strong> Filosofía de diseño del Dashboard.</p>
+<p><strong>Hash de integridad:</strong> Identificador único de cada transacción en BD2.</p>
+
+<h3>L</h3>
+<p><strong>Launchpad de Workflows:</strong> Vista con los 6 workflows.</p>
+<p><strong>LIVE:</strong> Modo operativo con persistencia en disco.</p>
+<p><strong>Lote de capital:</strong> Representación en BD1 de una posición abierta.</p>
+
+<h3>M</h3>
+<p><strong>Matriz de Integridad:</strong> Sección del Dashboard con los 6 ejes del checksum.</p>
+
+<h3>N</h3>
+<p><strong>Nodo soberano:</strong> Registro único en BD0 con totales consolidados.</p>
+
+<h3>P</h3>
+<p><strong>Pasaporte de activo:</strong> Registro en BD3 con ticker, precio SSOT, tesis y riesgo.</p>
+<p><strong>Pirámide Estratégica:</strong> Estructura de capital en 4 niveles.</p>
+<p><strong>Polvo seco (Dry Powder):</strong> Capital líquido disponible en stablecoins.</p>
+<p><strong>Puntuación del operador:</strong> Valor en BD15 (1-10) que afecta EJE-4.</p>
+
+<h3>R</h3>
+<p><strong>Razonamiento (El):</strong> Sección en cada workflow que justifica el protocolo.</p>
+<p><strong>Reconciliación:</strong> Verificación de que BD1 coincide con BD0.</p>
+<p><strong>Riesgo dinámico:</strong> El riesgo depende del despliegue operativo, no solo del activo.</p>
+
+<h3>S</h3>
+<p><strong>SIMULACIÓN:</strong> Modo operativo en memoria.</p>
+<p><strong>Single Source of Truth (SSOT):</strong> Cada dato tiene una única fuente.</p>
+<p><strong>Strict Block:</strong> Mecanismo que impide que activos no aprobados modifiquen BD1.</p>
+
+<h3>T</h3>
+<p><strong>Tier (Nivel):</strong> Cada uno de los 4 niveles de riesgo (Reserva, Rendimiento, Alpha, Especulación).</p>
+<p><strong>Toggle SIMULACIÓN/LIVE:</strong> Interruptor en la barra superior.</p>
+
+<h3>V</h3>
+<p><strong>Veredicto:</strong> Resultado del checksum: AUTHORIZED, CAUTION, BLOCKED.</p>
+
+<h3>W</h3>
+<p><strong>Workflow:</strong> Protocolo de misión predefinido. WF-001 a WF-099.</p>
+
+<hr>
+
+<div class="footer">
+<em>Fin del Manual de Operaciones — MIKOKO v27.0</em><br>
+<em>Documento generado en junio de 2026. Para soporte técnico, reportar incidencias en el repositorio oficial del proyecto.</em>
+</div>
+
+</body>
+</html>

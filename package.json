@@ -1,0 +1,29 @@
+{
+  "name": "mikoko-moster",
+  "version": "27.0.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "MIKOKO v27.0 localhost-only offline cryptocurrency portfolio system.",
+  "scripts": {
+    "server": "node server.js",
+    "dev": "concurrently -n server,frontend \"node server.js\" \"vite --host 127.0.0.1 --port 3001\"",
+    "start": "npm run dev",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 3001"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "vite": "^6.0.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
+}
