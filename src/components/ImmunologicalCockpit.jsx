@@ -133,7 +133,7 @@ export default function ImmunologicalCockpit() {
   return (
     <>
       <div
-        className={`border-b border-mikoko-line shadow-bevel-light transition-all duration-200 ${
+        className={`border-b-2 border-mikoko-line bg-mikoko-panel transition-all duration-200 ${
           collapsed ? "h-9" : "h-14"
         }`}
       >
@@ -148,9 +148,7 @@ export default function ImmunologicalCockpit() {
                     : "text-mikoko-crimson"
               }`}
             />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-mikoko-muted">
-              CHK
-            </span>
+            <span className="font-silkscreen text-[10px] tracking-wider text-mikoko-muted">CHK</span>
           </div>
 
           <div className="flex flex-1 items-center gap-3 overflow-x-auto">
@@ -159,15 +157,15 @@ export default function ImmunologicalCockpit() {
               return (
                 <div key={bar.key} className="flex shrink-0 items-center gap-2">
                   <span
-                    className={`text-[9px] font-bold uppercase tracking-wider ${
+                    className={`font-silkscreen text-[9px] tracking-wider ${
                       isRed ? "text-mikoko-crimson" : bar.light === "GREEN" ? "text-mikoko-emerald" : "text-mikoko-amber"
                     }`}
                   >
                     {bar.code}
                   </span>
-                  <div className="relative h-2 w-20 overflow-hidden rounded-full shadow-bevel-light bg-mikoko-line/50">
+                  <div className="relative h-2 w-20 overflow-hidden border-2 border-mikoko-line bg-mikoko-panel2">
                     <div
-                      className={`h-full rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-500 ${
+                      className={`h-full transition-all duration-500 ${
                         isRed ? "bg-mikoko-crimson" : bar.light === "GREEN" ? "bg-mikoko-emerald" : "bg-mikoko-amber"
                       }`}
                       style={{ width: `${Math.min(100, bar.pct)}%` }}
@@ -175,7 +173,7 @@ export default function ImmunologicalCockpit() {
                   </div>
                   {!collapsed && (
                     <span
-                      className={`text-[9px] font-mono ${
+                      className={`font-mono text-[9px] ${
                         isRed ? "text-mikoko-crimson" : "text-mikoko-muted"
                       }`}
                     >
@@ -191,7 +189,7 @@ export default function ImmunologicalCockpit() {
             {recon.isBlocked && (
               <button
                 onClick={recon.openReconciliation}
-                className="inline-flex min-h-6 animate-pulse items-center gap-1.5 rounded border border-mikoko-crimson/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-mikoko-crimson transition shadow-button bg-mikoko-crimson/10 hover:bg-mikoko-crimson/20"
+                className="inline-flex min-h-6 animate-pulse items-center gap-1.5 border-2 border-mikoko-crimson/50 px-2.5 py-1 font-silkscreen text-[9px] tracking-wider text-mikoko-crimson transition-all shadow-retro bg-mikoko-crimson/10 hover:bg-mikoko-crimson/20"
               >
                 <AlertTriangle className="h-3 w-3" />
                 RECON
@@ -199,7 +197,7 @@ export default function ImmunologicalCockpit() {
             )}
             <button
               onClick={() => setCollapsed(!collapsed)}
-              className="rounded p-1 text-mikoko-muted transition hover:bg-mikoko-panel2 hover:text-mikoko-text"
+              className="border-2 border-transparent p-1 text-mikoko-muted transition hover:border-mikoko-line hover:bg-mikoko-panel2 hover:text-mikoko-text hover:shadow-retro"
             >
               {collapsed ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronUp className="h-3.5 w-3.5" />}
             </button>
@@ -228,14 +226,14 @@ function ReconciliationOverlay({ recon, checksum }) {
       content: (
         <div className="space-y-3">
           {blockingAxes.length === 0 ? (
-            <div className="rounded-lg border border-mikoko-emerald/30 px-4 py-3 text-sm text-mikoko-emerald shadow-panel bg-mikoko-emerald/[0.04]">
+            <div className="border-2 border-mikoko-emerald/50 px-4 py-3 text-sm text-mikoko-emerald shadow-retro-inner bg-mikoko-emerald/[0.04]">
               No se detectan ejes bloqueantes. Puedes procedir a sellar.
             </div>
           ) : (
             blockingAxes.map(([key, axis]) => (
               <div
                 key={key}
-                className="rounded-lg border border-mikoko-crimson/30 px-4 py-3 shadow-panel bg-mikoko-crimson/[0.03]"
+                className="border-2 border-mikoko-crimson/50 px-4 py-3 shadow-retro-inner bg-mikoko-crimson/[0.03]"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -247,7 +245,7 @@ function ReconciliationOverlay({ recon, checksum }) {
                     {key === "eje2_prices" && (
                       <button
                         onClick={() => refreshMarketPrices()}
-                        className="inline-flex min-h-8 items-center gap-1.5 rounded border border-mikoko-cyan/40 px-3 py-1.5 text-[10px] font-semibold text-mikoko-cyan transition shadow-button hover:bg-mikoko-cyan/10"
+                        className="inline-flex min-h-8 items-center gap-1.5 border-2 border-mikoko-cyan/50 px-3 py-1.5 font-silkscreen text-[9px] tracking-wider text-mikoko-cyan transition-all shadow-retro hover:bg-mikoko-cyan/10"
                       >
                         <RefreshCw className="h-3 w-3" /> Actualizar Precios
                       </button>
@@ -255,7 +253,7 @@ function ReconciliationOverlay({ recon, checksum }) {
                     {key === "eje1_accounting" && (
                       <button
                         onClick={() => forceSyncBd0()}
-                        className="inline-flex min-h-8 items-center gap-1.5 rounded border border-mikoko-emerald/40 px-3 py-1.5 text-[10px] font-semibold text-mikoko-emerald transition shadow-button hover:bg-mikoko-emerald/10"
+                        className="inline-flex min-h-8 items-center gap-1.5 border-2 border-mikoko-emerald/50 px-3 py-1.5 font-silkscreen text-[9px] tracking-wider text-mikoko-emerald transition-all shadow-retro hover:bg-mikoko-emerald/10"
                       >
                         <RefreshCw className="h-3 w-3" /> Sync BD0
                       </button>
@@ -263,7 +261,7 @@ function ReconciliationOverlay({ recon, checksum }) {
                     {key === "eje3_audit" && (
                       <button
                         onClick={() => forceSyncBd0()}
-                        className="inline-flex min-h-8 items-center gap-1.5 rounded border border-mikoko-gold/40 px-3 py-1.5 text-[10px] font-semibold text-mikoko-gold transition shadow-button hover:bg-mikoko-gold/10"
+                        className="inline-flex min-h-8 items-center gap-1.5 border-2 border-mikoko-gold/50 px-3 py-1.5 font-silkscreen text-[9px] tracking-wider text-mikoko-gold transition-all shadow-retro hover:bg-mikoko-gold/10"
                       >
                         Marcar Auditado
                       </button>
@@ -281,7 +279,7 @@ function ReconciliationOverlay({ recon, checksum }) {
       desc: "Comparando BD1 vs BD0 y corrigiendo discrepancias",
       content: (
         <div className="space-y-3">
-          <div className="rounded-lg px-4 py-3 shadow-bevel-light bg-mikoko-panel2">
+          <div className="border-2 border-mikoko-line px-4 py-3 shadow-retro-inner bg-mikoko-panel2">
             <p className="text-xs text-mikoko-muted">
               Total BD1: <span className="font-mono text-mikoko-text font-semibold">${(checksum?.metrics?.totalGlobalUSD || 0).toLocaleString()}</span>
             </p>
@@ -291,7 +289,7 @@ function ReconciliationOverlay({ recon, checksum }) {
             <div className="mt-3 flex gap-2">
               <button
                 onClick={() => forceSyncBd0()}
-                className="inline-flex min-h-9 flex-1 items-center justify-center gap-2 rounded border border-mikoko-emerald/40 px-4 text-xs font-semibold text-mikoko-emerald transition shadow-button hover:bg-mikoko-emerald/10"
+                className="inline-flex min-h-9 flex-1 items-center justify-center gap-2 border-2 border-mikoko-emerald/50 px-4 font-silkscreen text-[10px] tracking-wider text-mikoko-emerald transition-all shadow-retro hover:bg-mikoko-emerald/10"
               >
                 <RefreshCw className="h-3.5 w-3.5" /> Forzar Sincronización BD0
               </button>
@@ -306,10 +304,10 @@ function ReconciliationOverlay({ recon, checksum }) {
       content: (
         <div className="space-y-2">
           {Object.entries(checksum?.axisResults || {}).map(([key, axis]) => (
-            <div key={key} className="flex items-center justify-between rounded px-4 py-2.5 shadow-bevel-light bg-mikoko-panel2">
+            <div key={key} className="flex items-center justify-between border-2 border-mikoko-line px-4 py-2.5 shadow-retro-inner bg-mikoko-panel2">
               <div className="flex items-center gap-3">
                 <span
-                  className={`h-2.5 w-2.5 rounded-full ${
+                  className={`h-2.5 w-2.5 border-2 border-mikoko-line ${
                     axis.light === "GREEN"
                       ? "bg-mikoko-emerald"
                       : axis.light === "YELLOW" || axis.light === "ORANGE"
@@ -317,11 +315,11 @@ function ReconciliationOverlay({ recon, checksum }) {
                         : "bg-mikoko-crimson"
                   }`}
                 />
-                <span className="text-xs font-medium text-mikoko-text">{axis.code}</span>
+                <span className="font-silkscreen text-[10px] tracking-wider text-mikoko-muted">{axis.code}</span>
                 <span className="text-[10px] text-mikoko-muted">{axis.label}</span>
               </div>
               <span
-                className={`text-[10px] font-semibold ${
+                className={`font-silkscreen text-[9px] tracking-wider ${
                   axis.light === "GREEN"
                     ? "text-mikoko-emerald"
                     : axis.light === "YELLOW" || axis.light === "ORANGE"
@@ -343,14 +341,14 @@ function ReconciliationOverlay({ recon, checksum }) {
         <div className="flex flex-col items-center justify-center py-6">
           {recon.sealed ? (
             <div className="flex flex-col items-center gap-3">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full border-4 border-mikoko-emerald shadow-stamp glow bg-mikoko-emerald/15">
+              <div className="flex h-20 w-20 items-center justify-center border-4 border-mikoko-emerald shadow-retro bg-mikoko-emerald/15">
                 <Lock className="h-10 w-10 text-mikoko-emerald" />
               </div>
-              <p className="text-lg font-bold text-mikoko-emerald">SNAPSHOT SEALED</p>
+              <p className="font-silkscreen text-sm tracking-wider text-mikoko-emerald">SNAPSHOT SEALED</p>
               <p className="text-xs text-mikoko-muted">Firma digital generada en BD21</p>
               <button
                 onClick={() => recon.setReconOpen(false)}
-                className="mt-2 inline-flex min-h-9 items-center gap-2 rounded shadow-panel bg-mikoko-panel2 px-4 text-xs text-mikoko-muted transition hover:text-mikoko-text"
+                className="mt-2 inline-flex min-h-9 items-center gap-2 border-2 border-mikoko-line shadow-retro bg-mikoko-panel2 px-4 text-xs text-mikoko-muted transition hover:text-mikoko-text"
               >
                 <X className="h-3.5 w-3.5" /> Cerrar Consola
               </button>
@@ -359,12 +357,12 @@ function ReconciliationOverlay({ recon, checksum }) {
             <>
               <p className="mb-4 text-center text-xs leading-5 text-mikoko-muted">
                 Al sellar este snapshot, se generará un registro inmutable en BD21 con las métricas actuales
-                y una firma digital única. El campo <code className="rounded bg-mikoko-panel2 px-1 py-0.5 font-mono text-mikoko-cyan">lastAuditDate</code> de BD0 se actualizará.
+                y una firma digital única. El campo <code className="border-2 border-mikoko-line bg-mikoko-panel2 px-1 py-0.5 font-mono text-mikoko-cyan">lastAuditDate</code> de BD0 se actualizará.
               </p>
               <button
                 onClick={recon.handleSeal}
                 disabled={recon.sealing}
-                className="group inline-flex min-h-12 items-center gap-3 rounded-xl border-2 border-mikoko-emerald/50 px-8 py-3 text-sm font-bold text-mikoko-emerald transition-all shadow-button hover:bg-mikoko-emerald/10 disabled:cursor-not-allowed disabled:opacity-50"
+                className="group inline-flex min-h-12 items-center gap-3 border-2 border-mikoko-emerald/60 px-8 py-3 font-silkscreen text-sm tracking-wider text-mikoko-emerald transition-all shadow-retro hover:bg-mikoko-emerald/10 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <FileCheck className="h-6 w-6" />
                 {recon.sealing ? "SELLANDO..." : "SEAL SNAPSHOT"}
@@ -377,22 +375,22 @@ function ReconciliationOverlay({ recon, checksum }) {
   ];
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-center justify-center bg-mikoko-text/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-xl rounded-xl shadow-panel-raised bg-mikoko-panel">
-        <div className="border-b border-mikoko-line px-6 py-4">
+    <div className="fixed inset-0 z-[90] flex items-center justify-center bg-mikoko-text/70">
+      <div className="relative w-full max-w-xl border-2 border-mikoko-line shadow-retro-lg bg-mikoko-panel">
+        <div className="border-b-2 border-mikoko-line px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-mikoko-crimson/30 text-mikoko-crimson shadow-panel-pressed bg-mikoko-crimson/[0.06]">
+              <div className="flex h-9 w-9 items-center justify-center border-2 border-mikoko-crimson/50 text-mikoko-crimson shadow-retro-inner bg-mikoko-crimson/[0.06]">
                 <AlertTriangle className="h-5 w-5" />
               </div>
               <div>
                 <h2 className="text-base font-semibold text-mikoko-text">Consola de Reconciliación de Emergencia</h2>
-                <p className="text-[10px] text-mikoko-muted">Protocolo de restauración del Sistema de Soporte Vital</p>
+                <p className="font-silkscreen text-[9px] tracking-wider text-mikoko-muted">Protocolo de restauración del Sistema de Soporte Vital</p>
               </div>
             </div>
             <button
               onClick={() => recon.setReconOpen(false)}
-              className="rounded-lg p-2 text-mikoko-muted transition hover:bg-mikoko-panel2 hover:text-mikoko-text"
+              className="border-2 border-transparent p-2 text-mikoko-muted transition hover:border-mikoko-line hover:bg-mikoko-panel2 hover:text-mikoko-text hover:shadow-retro"
             >
               <X className="h-4 w-4" />
             </button>
@@ -404,12 +402,12 @@ function ReconciliationOverlay({ recon, checksum }) {
             {steps.map((_, i) => (
               <div key={i} className="flex items-center gap-2">
                 <div
-                  className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold transition-all ${
+                  className={`flex h-6 w-6 items-center justify-center text-[10px] font-bold transition-all ${
                     recon.reconStep === i
-                      ? "border-2 border-mikoko-cyan bg-mikoko-cyan/15 text-mikoko-cyan"
+                      ? "border-2 border-mikoko-cyan bg-mikoko-cyan/15 text-mikoko-cyan shadow-retro"
                       : recon.reconStep > i
-                        ? "border-2 border-mikoko-emerald bg-mikoko-emerald/15 text-mikoko-emerald"
-                        : "border border-mikoko-line bg-mikoko-panel2 text-mikoko-muted"
+                        ? "border-2 border-mikoko-emerald bg-mikoko-emerald/15 text-mikoko-emerald shadow-retro"
+                        : "border-2 border-mikoko-line bg-mikoko-panel2 text-mikoko-muted"
                   }`}
                 >
                   {recon.reconStep > i ? <CheckCircle className="h-3 w-3" /> : i + 1}
@@ -427,24 +425,24 @@ function ReconciliationOverlay({ recon, checksum }) {
 
           <div className="mb-2">
             <h3 className="text-sm font-semibold text-mikoko-text">{steps[recon.reconStep].title}</h3>
-            <p className="text-[10px] text-mikoko-muted">{steps[recon.reconStep].desc}</p>
+            <p className="font-silkscreen text-[9px] tracking-wider text-mikoko-muted">{steps[recon.reconStep].desc}</p>
           </div>
 
           <div className="min-h-[200px] py-3">{steps[recon.reconStep].content}</div>
         </div>
 
         {recon.reconStep < steps.length - 1 && !recon.sealed && (
-          <div className="flex items-center justify-between border-t border-mikoko-line px-6 py-3">
+          <div className="flex items-center justify-between border-t-2 border-mikoko-line px-6 py-3">
             <button
               onClick={() => recon.setReconStep((s) => Math.max(0, s - 1))}
               disabled={recon.reconStep === 0}
-              className="inline-flex min-h-8 items-center rounded px-3 text-xs text-mikoko-muted transition hover:text-mikoko-text disabled:opacity-30"
+              className="inline-flex min-h-8 items-center border-2 border-transparent px-3 text-xs text-mikoko-muted transition hover:border-mikoko-line hover:text-mikoko-text hover:shadow-retro disabled:opacity-30"
             >
               Anterior
             </button>
             <button
               onClick={() => recon.setReconStep((s) => Math.min(s + 1, steps.length - 1))}
-              className="inline-flex min-h-8 items-center gap-1.5 rounded border border-mikoko-cyan/40 px-4 text-xs font-semibold text-mikoko-cyan transition shadow-button hover:bg-mikoko-cyan/10"
+              className="inline-flex min-h-8 items-center gap-1.5 border-2 border-mikoko-cyan/50 px-4 font-silkscreen text-[10px] tracking-wider text-mikoko-cyan transition-all shadow-retro hover:bg-mikoko-cyan/10"
             >
               Siguiente <ChevronDown className="h-3 w-3 -rotate-90" />
             </button>

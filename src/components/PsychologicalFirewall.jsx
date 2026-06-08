@@ -58,12 +58,12 @@ export default function PsychologicalFirewall() {
   return (
     <>
       {open && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-mikoko-text/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-lg rounded-xl shadow-panel-raised bg-mikoko-panel">
-            <div className="border-b border-mikoko-line px-6 py-5">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-mikoko-text/70">
+          <div className="relative w-full max-w-lg border-2 border-mikoko-line shadow-retro-lg bg-mikoko-panel">
+            <div className="border-b-2 border-mikoko-line px-6 py-5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-mikoko-cyan/30 text-mikoko-cyan shadow-panel-pressed bg-mikoko-cyan/[0.06]">
+                  <div className="flex h-10 w-10 items-center justify-center border-2 border-mikoko-cyan/50 text-mikoko-cyan shadow-retro-inner bg-mikoko-cyan/[0.06]">
                     <Brain className="h-5 w-5" />
                   </div>
                   <div>
@@ -73,7 +73,7 @@ export default function PsychologicalFirewall() {
                 </div>
                 <button
                   onClick={() => setOpen(false)}
-                  className="rounded-lg p-2 text-mikoko-muted transition hover:bg-mikoko-panel2 hover:text-mikoko-text"
+                  className="border-2 border-transparent p-2 text-mikoko-muted transition hover:border-mikoko-line hover:bg-mikoko-panel2 hover:text-mikoko-text hover:shadow-retro"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -91,7 +91,7 @@ export default function PsychologicalFirewall() {
                         <Icon className="h-4 w-4 text-mikoko-muted" />
                         <span className="text-sm font-medium text-mikoko-text">{s.label}</span>
                       </div>
-                      <span className="min-w-[3rem] rounded-md border border-mikoko-line shadow-bevel-light bg-mikoko-panel2 px-2 py-0.5 text-center font-mono text-xs text-mikoko-cyan">
+                      <span className="min-w-[3rem] border-2 border-mikoko-line shadow-retro-inner bg-mikoko-panel2 px-2 py-0.5 text-center font-mono text-xs text-mikoko-cyan">
                         {val}/10
                       </span>
                     </div>
@@ -107,9 +107,9 @@ export default function PsychologicalFirewall() {
                       />
                       <span className="w-20 text-[10px] text-mikoko-muted">{s.high}</span>
                     </div>
-                    <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full shadow-bevel-light bg-mikoko-line/50">
+                    <div className="mt-1.5 h-1.5 w-full overflow-hidden border-2 border-mikoko-line bg-mikoko-panel2">
                       <div
-                        className={`h-full rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 ${sliderColor(s.key, val)}`}
+                        className={`h-full transition-all duration-300 ${sliderColor(s.key, val)}`}
                         style={{ width: `${(val / 10) * 100}%` }}
                       />
                     </div>
@@ -132,14 +132,14 @@ export default function PsychologicalFirewall() {
               </div>
             </div>
 
-            <div className="border-t border-mikoko-line px-6 py-4">
+            <div className="border-t-2 border-mikoko-line px-6 py-4">
               <div className="flex items-center justify-between gap-4">
                 <p className="text-[10px] leading-4 text-mikoko-muted">
                   Los datos son confidenciales y solo visibles para ti. El sistema no bloqueará operaciones basado en tu estado.
                 </p>
                 <button
                   onClick={handleSubmit}
-                  className="inline-flex min-h-10 shrink-0 items-center gap-2 rounded-lg border border-mikoko-cyan/40 px-5 py-2 text-sm font-semibold text-mikoko-cyan transition shadow-button hover:bg-mikoko-cyan/10"
+                  className="inline-flex min-h-10 shrink-0 items-center gap-2 border-2 border-mikoko-cyan/50 px-5 py-2 font-silkscreen text-xs tracking-wider text-mikoko-cyan transition-all shadow-retro hover:bg-mikoko-cyan/10"
                 >
                   <Shield className="h-4 w-4" />
                   Confirmar Estado
@@ -152,7 +152,7 @@ export default function PsychologicalFirewall() {
 
       {hazardActive && stressLevel > 8 && (
         <div className="pointer-events-none fixed inset-x-0 top-14 z-50 flex justify-center">
-          <div className="pointer-events-auto slide-down rounded-b-lg border-x border-b border-mikoko-crimson/50 px-6 py-2 shadow-panel bg-mikoko-crimson/[0.06]">
+          <div className="pointer-events-auto slide-down border-2 border-t-0 border-mikoko-crimson/50 px-6 py-2 shadow-retro bg-mikoko-crimson/[0.06]">
             <div className="flex items-center gap-3 text-sm">
               <AlertTriangle className="h-4 w-4 text-mikoko-crimson" />
               <span className="font-semibold text-mikoko-crimson">

@@ -631,7 +631,7 @@ function DueDiligenceWizard({ sourceItem, onClose, onComplete }) {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-mikoko-text/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-2xl rounded-xl border border-mikoko-gold/30 bg-mikoko-panel shadow-panel-raised">
+      <div className="relative w-full max-w-2xl border-2 border-mikoko-gold/50 bg-mikoko-panel shadow-retro-lg">
         <div className="border-b border-mikoko-line px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
