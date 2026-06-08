@@ -106,8 +106,10 @@ export default function DashboardView() {
           <MetricCard label="Precios Obsoletos" value={String(metrics?.stalePriceAssets?.length || 0)} sub="Activos bloqueando EJE-2" accent="crimson" />
         </section>
 
+        <div className="text-right font-silkscreen text-[8px] tracking-[0.5em] text-mikoko-muted">◆ ◇ ◆ ◇ ◆</div>
+
         <section className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
-          <div className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel">
+          <div className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel transition-all duration-150 hover:-translate-y-0.5 hover:shadow-retro-lg">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
                 <h2 className="text-lg font-semibold text-mikoko-text">Integridad del Sistema</h2>
@@ -131,7 +133,7 @@ export default function DashboardView() {
             </div>
           </div>
 
-          <div className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel">
+          <div className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel transition-all duration-150 hover:-translate-y-0.5 hover:shadow-retro-lg">
             <h2 className="text-lg font-semibold text-mikoko-text">Distribución de Asignación</h2>
             <p className="mt-1 text-sm text-mikoko-muted">Resumen BD1 por nivel de riesgo final.</p>
             <div className="mt-5 space-y-4">
@@ -151,7 +153,7 @@ export default function DashboardView() {
         </section>
 
         <section className="grid gap-5 xl:grid-cols-[0.8fr_1.2fr]">
-          <form onSubmit={handleSubmit} className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel">
+          <form onSubmit={handleSubmit} className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel transition-all duration-150 hover:-translate-y-0.5 hover:shadow-retro-lg">
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center border-2 border-mikoko-line text-mikoko-gold shadow-retro-inner bg-mikoko-gold/[0.06]">
                 <Wallet className="h-5 w-5" />
@@ -190,7 +192,7 @@ export default function DashboardView() {
             </button>
           </form>
 
-          <div className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel">
+          <div className="border-2 border-mikoko-line p-5 shadow-retro bg-mikoko-panel transition-all duration-150 hover:-translate-y-0.5 hover:shadow-retro-lg">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
                 <h2 className="text-lg font-semibold text-mikoko-text">Tabla de Activos</h2>
@@ -258,7 +260,7 @@ function StatusPill({ icon, label, value, className }) {
 function MetricCard({ label, value, sub, accent }) {
   const accents = { emerald: "border-mikoko-emerald/40 text-mikoko-emerald", crimson: "border-mikoko-crimson/40 text-mikoko-crimson", cyan: "border-mikoko-cyan/40 text-mikoko-cyan", gold: "border-mikoko-gold/40 text-mikoko-gold" };
   return (
-    <div className={`border-2 shadow-retro bg-mikoko-panel p-5 ${accents[accent]}`}>
+    <div className={`border-2 shadow-retro bg-mikoko-panel p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-retro-lg ${accents[accent]}`}>
       <p className="text-xs uppercase tracking-wider text-mikoko-muted">{label}</p>
       <p className="mt-3 text-2xl font-semibold text-mikoko-text">{value}</p>
       {sub && <p className="mt-2 text-sm text-mikoko-muted">{sub}</p>}

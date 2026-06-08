@@ -49,17 +49,18 @@ export default function App() {
           <span className="ml-auto font-silkscreen text-[8px] text-mikoko-muted">v27</span>
         </div>
         <nav className="flex-1 space-y-1.5 px-3 py-4">
-          {NAV_NODES.map((node) => {
+          {NAV_NODES.map((node, i) => {
             const Icon = node.icon;
             const active = activeView === node.key;
             return (
               <button
                 key={node.key}
                 onClick={() => setActiveView(node.key)}
-                className={`flex w-full items-center gap-3 border-2 px-3 py-2.5 text-xs font-medium transition-all ${
+                style={{ animationDelay: `${i * 50}ms` }}
+                className={`slide-right flex w-full items-center gap-3 border-2 px-3 py-2.5 text-xs font-medium transition-all opacity-0 ${
                   active
                     ? "border-mikoko-line bg-mikoko-panel2 text-mikoko-text shadow-retro-inner"
-                    : "border-transparent text-mikoko-muted hover:border-mikoko-line hover:bg-mikoko-panel2/50 hover:text-mikoko-text hover:shadow-retro"
+                    : "border-transparent text-mikoko-muted hover:border-mikoko-line hover:bg-mikoko-panel2/50 hover:text-mikoko-text hover:shadow-retro hover:-translate-y-0.5"
                 }`}
                 title={node.label}
               >
